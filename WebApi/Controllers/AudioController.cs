@@ -9,6 +9,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult AddAudio([FromBody] string name, string description, string imageUrl)
         {
+            //si tiene categoria va suelto, si tiene categoria y playlist va solo a la playlist
             return null;
         }
 
@@ -18,18 +19,18 @@ namespace WebApi.Controllers
             return null;
         }
 
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            return null;
+        }
+
         [HttpDelete("{id}")]
         public IActionResult DeleteAudio([FromQuery] int playListId)
         {
             return null;
         }
+    }
+}
 
-        [HttpPost]
-        public IActionResult AddSong([FromBody]/*SongDTO */ int songId)
-        {
-            return null;
-        }
-    }
-}
-    }
-}
