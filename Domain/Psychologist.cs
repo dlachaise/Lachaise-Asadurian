@@ -9,6 +9,7 @@ namespace Domain
         public string Name { get; set; }
         public string MeetingType { get; set; }
         public string Address { get; set; }
-
+        public bool IsActive { get; set; }
+        public List<Pathology> Pathologies {get; set;}
     }
 }
