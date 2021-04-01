@@ -1,0 +1,12 @@
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\bin\Debug\net5.0\Domain.deps.json
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\bin\Debug\net5.0\Domain.dll
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\bin\Debug\net5.0\ref\Domain.dll
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\bin\Debug\net5.0\Domain.pdb
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\obj\Debug\net5.0\Domain.csprojAssemblyReference.cache
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\obj\Debug\net5.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\obj\Debug\net5.0\Domain.dll
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\obj\Debug\net5.0\ref\Domain.dll
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\obj\Debug\net5.0\Domain.pdb

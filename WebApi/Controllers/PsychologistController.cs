@@ -19,7 +19,7 @@ namespace WebApi.Controllers
 
 
         [HttpGet]
-        public IActionResult GetAll(sbyte)
+        public IActionResult GetAll()
         {
             return null;
         }

@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Domain;
+
 namespace DataAccess
 {
-    public class Context : DbContext
+    public class DataContext : DbContext
     {
         public DbSet<Administrator> Administrators { get; set; }
         public DbSet<Audio> Audios { get; set; }
@@ -13,6 +14,6 @@ namespace DataAccess
         public DbSet<Category> Category { get; set; }
         public DbSet<Consultation> Consultations { get; set; }
 
-        public Context(DbContextOptions options) : base(options) { }
+        public DataContext(DbContextOptions options) : base(options) { }
     }
 }

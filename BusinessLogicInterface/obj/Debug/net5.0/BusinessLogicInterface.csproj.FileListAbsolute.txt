@@ -1,0 +1,12 @@
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\obj\Debug\net5.0\BusinessLogicInterface.csprojAssemblyReference.cache
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\obj\Debug\net5.0\BusinessLogicInterface.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\obj\Debug\net5.0\BusinessLogicInterface.AssemblyInfoInputs.cache
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\obj\Debug\net5.0\BusinessLogicInterface.AssemblyInfo.cs
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\obj\Debug\net5.0\BusinessLogicInterface.csproj.CoreCompileInputs.cache
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\bin\Debug\net5.0\BusinessLogicInterface.deps.json
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\bin\Debug\net5.0\BusinessLogicInterface.dll
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\bin\Debug\net5.0\ref\BusinessLogicInterface.dll
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\bin\Debug\net5.0\BusinessLogicInterface.pdb
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\obj\Debug\net5.0\BusinessLogicInterface.dll
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\obj\Debug\net5.0\ref\BusinessLogicInterface.dll
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\obj\Debug\net5.0\BusinessLogicInterface.pdb

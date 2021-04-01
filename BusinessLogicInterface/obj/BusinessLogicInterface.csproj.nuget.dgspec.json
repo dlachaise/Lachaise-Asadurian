@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {}
+    "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {}
   },
   "projects": {
-    "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
+    "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+        "projectUniqueName": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
         "projectName": "BusinessLogicInterface",
-        "projectPath": "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+        "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
         "packagesPath": "C:\\Users\\domil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\obj\\",
+        "outputPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

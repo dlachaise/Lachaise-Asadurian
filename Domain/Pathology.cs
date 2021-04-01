@@ -5,7 +5,7 @@ namespace Domain
 {
     public class Pathology
     {
-        public int Id {get; set;}
+        public Guid Id {get; set;}
         public string Name {get; set;}
         public List<Psychologist> Psychologists {get; set;}
     }
