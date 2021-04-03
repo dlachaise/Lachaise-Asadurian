@@ -39,7 +39,7 @@ namespace DataAccess
         {
             //TODO: Se puede mejorar esto colocando en un archivo externo y obteniendo
             // desde allí la información.
-            builder.UseSqlServer(@"Server=LAPTOP-9P85EPU1\SQLEXPRESS;Database=BetterCalmDB;Trusted_Connection=True;MultipleActiveResultSets=True;");
+            builder.UseSqlServer(@"Server=LAPTOP-F720VT9V\SQLEXPRESS;Database=BetterCalmDB;Trusted_Connection=True;MultipleActiveResultSets=True;");
             return builder.Options;
         }
     }
