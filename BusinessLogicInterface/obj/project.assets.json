@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\domil\\.nuget\\packages\\": {},
@@ -14,11 +33,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+      "projectUniqueName": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
       "projectName": "BusinessLogicInterface",
-      "projectPath": "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+      "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
       "packagesPath": "C:\\Users\\domil\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\obj\\",
+      "outputPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -37,7 +56,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj": {
+              "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

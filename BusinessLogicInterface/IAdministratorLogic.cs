@@ -6,15 +6,14 @@ namespace BusinessLogicInterface
 {
     public interface IAdministratorLogic
     {
-     IEnumerable<Administrator> GetAll();
+        IEnumerable<Administrator> GetAll();
 
-     Administrator Get(Guid id);
+        Administrator Get(Guid id);
 
-    void Update(Administrator Administrator);
-    void Delete(Guid id);
+        void Update(Guid id, Administrator admin);
+        void Delete(Guid id);
+        void Create(Administrator admin);
 
-    void Add(string Name, string Email, string Password ); );
-    
-     
+
     }
 }

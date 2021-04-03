@@ -30,7 +30,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj": {
+                "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
