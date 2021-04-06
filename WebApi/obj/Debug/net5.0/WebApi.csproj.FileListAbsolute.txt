@@ -69,3 +69,5 @@ C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\WebApi\obj\Deb
 C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\WebApi\bin\Debug\net5.0\Humanizer.dll
 C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\WebApi\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\Diego\Desktop\OBL\WebApi\obj\Debug\net5.0\WebApi.pdb
+c:\Users\Diego\Desktop\OBL\WebApi\obj\Debug\net5.0\WebApi.dll
+c:\Users\Diego\Desktop\OBL\WebApi\obj\Debug\net5.0\ref\WebApi.dll

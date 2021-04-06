@@ -17,3 +17,11 @@ C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogic\
 C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogic\obj\Debug\net5.0\BusinessLogic.dll
 C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogic\obj\Debug\net5.0\ref\BusinessLogic.dll
 C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogic\obj\Debug\net5.0\BusinessLogic.pdb
+c:\Users\Diego\Desktop\OBL\BusinessLogic\obj\Debug\net5.0\BusinessLogic.csprojAssemblyReference.cache
+c:\Users\Diego\Desktop\OBL\BusinessLogic\obj\Debug\net5.0\BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Diego\Desktop\OBL\BusinessLogic\obj\Debug\net5.0\BusinessLogic.AssemblyInfoInputs.cache
+c:\Users\Diego\Desktop\OBL\BusinessLogic\obj\Debug\net5.0\BusinessLogic.AssemblyInfo.cs
+c:\Users\Diego\Desktop\OBL\BusinessLogic\obj\Debug\net5.0\BusinessLogic.csproj.CoreCompileInputs.cache
+c:\Users\Diego\Desktop\OBL\BusinessLogic\obj\Debug\net5.0\BusinessLogic.dll
+c:\Users\Diego\Desktop\OBL\BusinessLogic\obj\Debug\net5.0\ref\BusinessLogic.dll
+c:\Users\Diego\Desktop\OBL\BusinessLogic\obj\Debug\net5.0\BusinessLogic.pdb

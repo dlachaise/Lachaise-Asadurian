@@ -10,3 +10,15 @@ C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\obj\Deb
 C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\obj\Debug\net5.0\Domain.dll
 C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\obj\Debug\net5.0\ref\Domain.dll
 C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\Domain\obj\Debug\net5.0\Domain.pdb
+c:\Users\Diego\Desktop\OBL\Domain\bin\Debug\net5.0\Domain.deps.json
+c:\Users\Diego\Desktop\OBL\Domain\bin\Debug\net5.0\Domain.dll
+c:\Users\Diego\Desktop\OBL\Domain\bin\Debug\net5.0\ref\Domain.dll
+c:\Users\Diego\Desktop\OBL\Domain\bin\Debug\net5.0\Domain.pdb
+c:\Users\Diego\Desktop\OBL\Domain\obj\Debug\net5.0\Domain.csprojAssemblyReference.cache
+c:\Users\Diego\Desktop\OBL\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Diego\Desktop\OBL\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
+c:\Users\Diego\Desktop\OBL\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs
+c:\Users\Diego\Desktop\OBL\Domain\obj\Debug\net5.0\Domain.csproj.CoreCompileInputs.cache
+c:\Users\Diego\Desktop\OBL\Domain\obj\Debug\net5.0\Domain.dll
+c:\Users\Diego\Desktop\OBL\Domain\obj\Debug\net5.0\ref\Domain.dll
+c:\Users\Diego\Desktop\OBL\Domain\obj\Debug\net5.0\Domain.pdb

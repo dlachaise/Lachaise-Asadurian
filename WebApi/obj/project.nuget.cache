@@ -1,10 +1,6 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "VNzU1lhcHBImB+C+B+RH2qm0xde2C+PMneCBFVTSuYBr7eWrD+DIM+ba5iREKUe+SZqZKOuRNZa/4pcmtnUXhA==",
-=======
   "dgSpecHash": "vEW5OOdi5hDnUpHfhSUR63JlWe4qP0HO9q7TvJpqNHwxrg9s8Zm1eToZJRIQcfU5VwSWsxUHL+NUy87pDoZqFQ==",
->>>>>>> 01068a3b2d71cd3284d2c358e1173e1a76c026d4
   "success": true,
   "projectFilePath": "c:\\Users\\Diego\\Desktop\\OBL\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
@@ -112,5 +108,12 @@
     "C:\\Users\\Diego\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file c:\\Users\\Diego\\Desktop\\OBL\\WebApi\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

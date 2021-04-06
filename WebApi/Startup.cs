@@ -11,7 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-
+using BusinessLogic;
+{
+    
+}
 namespace WebApi
 {
     public class Startup
@@ -28,6 +31,14 @@ namespace WebApi
         {
 
             services.AddControllers();
+            services.AddScoped<IAdministratorLogic,AdministratorLogic>();
+            services.AddScoped<IAudioLogic,AudioLogic>();
+            services.AddScoped<IPlayListLogic,PlayListLogic>();
+            services.AddScoped<IPsychologistLogic,PsychologistLogic>();
+
+        //    services.AddDbContext<DbContext,DataContext>(
+         //       o => o.UseSqlServer(Configuration.getConnectionString("")) aca debe ir el nombre que le pusimos al appSetting de la Bd pero no lo encontre, VER VIDEO
+          //  );
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });

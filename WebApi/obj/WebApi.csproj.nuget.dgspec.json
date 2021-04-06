@@ -28,13 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-<<<<<<< HEAD
-              "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj": {
-                "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj"
-=======
               "c:\\Users\\Diego\\Desktop\\OBL\\Domain\\Domain.csproj": {
                 "projectPath": "c:\\Users\\Diego\\Desktop\\OBL\\Domain\\Domain.csproj"
->>>>>>> 01068a3b2d71cd3284d2c358e1173e1a76c026d4
               }
             }
           }
