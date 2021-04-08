@@ -9,7 +9,7 @@ namespace Domain
         public string Password { get; set; }
 
         public bool IsActive { get; set; }
-        Administrator()
+        public Administrator()
         {
             Id = Guid.NewGuid();
         }
@@ -24,5 +24,19 @@ namespace Domain
             return this;
         }
 
+
+        //...SOME CODE
+        public override bool Equals(Object obj)
+        {
+            var result = false;
+
+            if (obj is Administrator administrator)
+            {
+                result = this.Id == administrator.Id && this.Email.Equals(administrator.Email);
+            }
+
+            return result;
+        }
     }
+
 }

@@ -10,3 +10,6 @@ C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicI
 C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\obj\Debug\net5.0\BusinessLogicInterface.dll
 C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\obj\Debug\net5.0\ref\BusinessLogicInterface.dll
 C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\obj\Debug\net5.0\BusinessLogicInterface.pdb
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\bin\Debug\net5.0\Domain.dll
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\bin\Debug\net5.0\Domain.pdb
+C:\Users\domil\Desktop\Obligatorio-D2-2021\Lachaise-Asadurian\MSP\BusinessLogicInterface\obj\Debug\net5.0\BusinessLogicInterface.csproj.CopyComplete

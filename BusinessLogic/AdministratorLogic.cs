@@ -5,20 +5,26 @@ using DataAccess;
 using BusinessLogicInterface;
 namespace BusinessLogic
 {
-    public class AdministratorLogic : IAdministratorLogic
+    public class AdministratorLogic //: IAdministratorLogic
     {
+
+        private IAdministratorRepository AdmDA;
+        public AdministratorLogic(IAdministratorRepository admDA)
+        {
+            this.AdmDA = admDA;
+        }
         private AdministratorRepository adminRepository;
 
-        public AdministratorLogic()
+        public AdministratorLogic(AdministratorRepository adm)
         {
-            DataContext context = ContextFactory.GetNewContext();
-            adminRepository = new AdministratorRepository(context);
+            this.adminRepository = adm;
         }
 
-        public void Create(Administrator admin)
+        public Administrator Create(Administrator admin)
         {
-            adminRepository.Add(admin);
-            adminRepository.Save();
+            //     adminRepository.Add(admin);
+            //   adminRepository.Save();
+            return new Administrator();
         }
 
         public void Delete(Guid id)
@@ -66,7 +72,7 @@ namespace BusinessLogic
 
         public IEnumerable<Administrator> GetAll()
         {
-            return adminRepository.GetAll();
+            return this.AdmDA.GetAll();
         }
     }
 }
