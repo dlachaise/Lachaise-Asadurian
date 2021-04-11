@@ -5740,11 +5740,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogic\\BusinessLogic.csproj",
+      "projectUniqueName": "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogic\\BusinessLogic.csproj",
       "projectName": "BusinessLogic",
-      "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogic\\BusinessLogic.csproj",
+      "projectPath": "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogic\\BusinessLogic.csproj",
       "packagesPath": "C:\\Users\\domil\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogic\\obj\\",
+      "outputPath": "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogic\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5764,14 +5764,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
-              "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
+            "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
+              "projectPath": "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
             },
-            "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\DataAccess\\DataAccess.csproj"
             },
-            "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj": {
-              "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj"
+            "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj"
             }
           }
         }

@@ -12,7 +12,7 @@ namespace BusinessLogicInterface
 
         void Update(Guid id, Administrator admin);
         void Delete(Guid id);
-        void Create(Administrator admin);
+        Administrator Create(Administrator admin);
 
 
     }

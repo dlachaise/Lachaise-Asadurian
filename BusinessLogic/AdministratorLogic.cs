@@ -5,7 +5,7 @@ using DataAccess;
 using BusinessLogicInterface;
 namespace BusinessLogic
 {
-    public class AdministratorLogic //: IAdministratorLogic
+    public class AdministratorLogic : IAdministratorLogic
     {
 
         private IAdministratorRepository AdmDA;
