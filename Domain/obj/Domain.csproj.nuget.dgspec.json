@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj": {}
+    "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj": {
+    "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",

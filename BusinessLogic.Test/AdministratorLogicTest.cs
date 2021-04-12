@@ -16,24 +16,16 @@ namespace BusinessLogic.Test
     {
        private Mock<IAdministratorLogic> Mock;
         private Mock<IAdministratorRepository> daMock;
-       // private Mock<IAdministratorRepository> daMock;
+    
         AdministratorLogic administratorLogic;
 
         [TestInitialize]
         public void Setup()
         {
-            //daMock = new Mock<IAdministratorRepository>(MockBehavior.Strict);
             daMock = new Mock<IAdministratorRepository>(MockBehavior.Strict);
             Mock = new Mock<IAdministratorLogic>(MockBehavior.Strict);
             this.administratorLogic = new AdministratorLogic(daMock.Object, Mock.Object);
         }
-
-       /* [TestCleanup]
-        public void TestCleanup()
-        {
-           this.context.Database.EnsureDeleted();
-        }
-*/
 
         [TestMethod]
         public void GetAllTest()
@@ -77,8 +69,7 @@ namespace BusinessLogic.Test
 
         }
 
-
-
     }
+    
 }
 

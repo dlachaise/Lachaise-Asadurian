@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+      "projectUniqueName": "C:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
       "projectName": "BusinessLogicInterface",
-      "projectPath": "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+      "projectPath": "C:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
       "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\obj\\",
+      "outputPath": "C:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj": {
-              "projectPath": "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj"
+            "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj"
             }
           }
         }
