@@ -5,19 +5,30 @@ using DataAccess;
 using BusinessLogicInterface;
 namespace BusinessLogic
 {
-    public class AdministratorLogic : IAdministratorLogic
+    public class AdministratorLogic : IAdministratorLogic //IAdministratorRepository
     {
 
-        private IAdministratorRepository AdmDA;
-        public AdministratorLogic(IAdministratorRepository admDA)
-        {
-            this.AdmDA = admDA;
-        }
-        private AdministratorRepository adminRepository;
+        private IAdministratorRepository admDA;
+        private AdministratorLogic adminLogic;
+        private IAdministratorLogic iAdminLogic;
 
-        public AdministratorLogic(AdministratorRepository adm)
+        public AdministratorLogic(IAdministratorRepository AdmDA)
         {
-            this.adminRepository = adm;
+            this.admDA = AdmDA;
+        }
+
+      public AdministratorLogic(AdministratorLogic adm)
+        {
+            this.adminLogic = adm;
+        }
+          public AdministratorLogic(IAdministratorLogic adm)
+        {
+            this.iAdminLogic = adm;
+        }
+         public AdministratorLogic(IAdministratorRepository repository, IAdministratorLogic adminsLogic)
+        {
+            this.admDA = repository;
+            this.iAdminLogic = adminsLogic;
         }
 
         public Administrator Create(Administrator admin)
@@ -29,7 +40,7 @@ namespace BusinessLogic
 
         public void Delete(Guid id)
         {
-            Administrator admin = adminRepository.Get(id);
+            Administrator admin = admDA.Get(id);
 
             if (admin == null)
             {
@@ -38,13 +49,13 @@ namespace BusinessLogic
             admin.IsActive = false;
 
             //adminRepository.Remove(admin);
-            adminRepository.Save();
+            admDA.Save();
         }
 
         public void Update(Guid id, Administrator updatedAdmin)
         {
 
-            Administrator admin = adminRepository.Get(id);
+            Administrator admin = admDA.Get(id);
 
             if (admin == null)
             {
@@ -56,23 +67,25 @@ namespace BusinessLogic
             admin.Password = updatedAdmin.Password;
             admin.Email = updatedAdmin.Email;
 
-            adminRepository.Update(admin);
-            adminRepository.Save();
+            admDA.Update(admin);
+            admDA.Save();
         }
 
         public Administrator Get(Guid id)
         {
-            Administrator admin = adminRepository.Get(id);
-            if (admin == null)
+            Administrator admin = admDA.Get(id);
+            if (admin != null && admin.IsActive == true)
             {
-                //error el administrador no existe
+                return admin;
             }
-            return admin;
+            else{
+                throw new Exception("Administrator does not exist");
+            }
         }
 
         public IEnumerable<Administrator> GetAll()
         {
-            return this.AdmDA.GetAll();
+            return this.admDA.GetAll();
         }
     }
 }

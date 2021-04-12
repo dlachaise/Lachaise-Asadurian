@@ -9,6 +9,7 @@
       "BusinessLogic.Test/1.0.0": {
         "dependencies": {
           "BusinessLogic": "1.0.0",
+          "BusinessLogicInterface": "1.0.0",
           "DataAccess": "1.0.0",
           "Domain": "1.0.0",
           "MSTest.TestAdapter": "2.1.1",

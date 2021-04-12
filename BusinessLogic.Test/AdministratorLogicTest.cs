@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Moq;
 using Domain;
 using BusinessLogic;
+using BusinessLogicInterface;
 using DataAccess;
 using System.Linq;
 namespace BusinessLogic.Test
@@ -13,22 +14,26 @@ namespace BusinessLogic.Test
     [TestClass]
     public class AdministratorLoginTest
     {
-        Mock<IAdministratorRepository<Administrator>> daMock;
-        AdministradorLogic administratorLogic;
+       private Mock<IAdministratorLogic> Mock;
+        private Mock<IAdministratorRepository> daMock;
+       // private Mock<IAdministratorRepository> daMock;
+        AdministratorLogic administratorLogic;
 
         [TestInitialize]
         public void Setup()
         {
-            this.daMock = new Mock<IAdministratotRepository<Administrator>>(MockBehavior.Strict);
+            //daMock = new Mock<IAdministratorRepository>(MockBehavior.Strict);
+            daMock = new Mock<IAdministratorRepository>(MockBehavior.Strict);
+            Mock = new Mock<IAdministratorLogic>(MockBehavior.Strict);
             this.administratorLogic = new AdministratorLogic(daMock.Object, Mock.Object);
         }
 
-        [TestCleanup]
+       /* [TestCleanup]
         public void TestCleanup()
         {
-            this.context.Database.EnsureDeleted();
+           this.context.Database.EnsureDeleted();
         }
-
+*/
 
         [TestMethod]
         public void GetAllTest()
@@ -39,16 +44,41 @@ namespace BusinessLogic.Test
                 Id = id,
                 Name = "Nicolas",
                 Email = "nico@nico.com",
-                Password = "hola123"
+                Password = "hola123",
+                IsActive = true
             };
             List<Administrator> list = new List<Administrator>();
             list.Add(admin);
             daMock.Setup(x => x.GetAll()).Returns(list);
 
-            IEnumerable<TouristSpot> ret = administratorLogic.GetAll();
+            IEnumerable<Administrator> ret = administratorLogic.GetAll();
             daMock.VerifyAll();
-            Assert.IsTrue(ret.SequenceEqual(touristSpotList));
+            Assert.IsTrue(ret.SequenceEqual(list));
         }
+
+    [TestMethod]
+        public void GetAdministratorById()
+        {
+            Guid id = Guid.NewGuid();
+            var admin = new Administrator()
+            {
+                Id = id,
+                Name = "Diego",
+                Email = "diego@gmail.com",
+                Password = "admin1234",
+                IsActive = true
+            };
+
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
+            
+            var ret = administratorLogic.Get(id);
+            daMock.VerifyAll();
+            Assert.IsTrue(ret.Equals(admin));
+
+        }
+
+
 
     }
 }
+

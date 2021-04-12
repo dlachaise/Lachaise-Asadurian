@@ -6015,23 +6015,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\domil\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Diego\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "c:\\Users\\Diego\\Desktop\\MSP\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\WebApi\\WebApi.csproj",
-      "packagesPath": "C:\\Users\\domil\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\WebApi\\obj\\",
+      "projectPath": "c:\\Users\\Diego\\Desktop\\MSP\\WebApi\\WebApi.csproj",
+      "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\Diego\\Desktop\\MSP\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\domil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6045,20 +6041,20 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
-              "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
+            "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
+              "projectPath": "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
             },
-            "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogic\\BusinessLogic.csproj": {
-              "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\BusinessLogic\\BusinessLogic.csproj"
+            "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogic\\BusinessLogic.csproj": {
+              "projectPath": "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogic\\BusinessLogic.csproj"
             },
-            "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\DataAccess\\DataAccess.csproj"
+            "c:\\Users\\Diego\\Desktop\\MSP\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "c:\\Users\\Diego\\Desktop\\MSP\\DataAccess\\DataAccess.csproj"
             },
-            "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj": {
-              "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj"
+            "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj": {
+              "projectPath": "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj"
             },
-            "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Model\\Model.csproj": {
-              "projectPath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Model\\Model.csproj"
+            "c:\\Users\\Diego\\Desktop\\MSP\\Model\\Model.csproj": {
+              "projectPath": "c:\\Users\\Diego\\Desktop\\MSP\\Model\\Model.csproj"
             }
           }
         }
@@ -6114,7 +6110,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
