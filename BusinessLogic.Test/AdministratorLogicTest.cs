@@ -69,6 +69,31 @@ namespace BusinessLogic.Test
 
         }
 
+        [TestMethod]
+        public void AdministratorUpdateOk()
+        {            
+            Guid id = Guid.NewGuid();
+            var admin = new Administrator()
+            {
+                 Id = id,
+                Name = "Dominique",
+                Email = "domi@gmail.com",
+                Password = "admin1234",
+                IsActive = true
+            };
+
+
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
+            daMock.Setup(x => x.Update(id,admin)).Verifiable();
+            daMock.Setup(x => x.Save());
+
+            administratorLogic.Update(id,admin);
+
+            daMock.VerifyAll();
+
+        }
+
+
     }
     
 }
