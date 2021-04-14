@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U9qxemdSUKdWQahpGFb/LRZzUUFYbxOP2miSJyLkLeBl216G7Klrf9CV1j14ppKvJeMIBMSUbAO1q7frDQA9lQ==",
+  "dgSpecHash": "7dMkHbFzL0xEttFVDtNBhfjon1dSzZjHE3o0VeiwEMvC/sdqOL/RlwY2riPFHr+Hs+HBz++3Z5HvWWUmA9GtcQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Diego\\Desktop\\MSP\\BusinessLogic.Test\\BusinessLogic.Test.csproj",
+  "projectFilePath": "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogic.Test\\BusinessLogic.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Diego\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\coverlet.collector\\1.3.0\\coverlet.collector.1.3.0.nupkg.sha512",

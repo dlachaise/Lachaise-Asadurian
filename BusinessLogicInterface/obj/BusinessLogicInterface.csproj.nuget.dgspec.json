@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {}
+    "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
+    "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+        "projectUniqueName": "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
         "projectName": "BusinessLogicInterface",
-        "projectPath": "C:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+        "projectPath": "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
         "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\obj\\",
+        "outputPath": "c:\\Users\\Diego\\Desktop\\MSP\\BusinessLogicInterface\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj"
+              "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj": {
+                "projectPath": "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj"
               }
             }
           }
@@ -62,14 +62,14 @@
         }
       }
     },
-    "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj": {
+    "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj",
+        "projectUniqueName": "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj",
+        "projectPath": "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\obj\\",
+        "outputPath": "c:\\Users\\Diego\\Desktop\\MSP\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
