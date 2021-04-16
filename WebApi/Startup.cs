@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using DataAccess;
+using BusinessLogic;
+using BusinessLogicInterface;
 
 namespace WebApi
 {
@@ -28,7 +31,8 @@ namespace WebApi
         {
 
             services.AddControllers();
-            services.AddScoped<IAdministratorRepository,AdministratorLogic>();
+            services.AddScoped<IAdministratorLogic, AdministratorLogic>();
+            services.AddScoped<IAdministratorRepository, AdministratorRepository>();
             //services.AddScoped<IAudioLogic,AudioLogic>();
             services.AddSwaggerGen(c =>
             {

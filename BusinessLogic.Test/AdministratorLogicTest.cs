@@ -14,9 +14,9 @@ namespace BusinessLogic.Test
     [TestClass]
     public class AdministratorLoginTest
     {
-       private Mock<IAdministratorLogic> Mock;
+        private Mock<IAdministratorLogic> Mock;
         private Mock<IAdministratorRepository> daMock;
-    
+
         AdministratorLogic administratorLogic;
 
         [TestInitialize]
@@ -47,9 +47,20 @@ namespace BusinessLogic.Test
             daMock.VerifyAll();
             Assert.IsTrue(ret.SequenceEqual(list));
         }
+        [TestMethod]
+        public void GetAllTestEmptyList()
+        {
 
-    [TestMethod]
-        public void GetAdministratorById()
+            List<Administrator> list = new List<Administrator>();
+            daMock.Setup(x => x.GetAll()).Returns(list);
+
+            IEnumerable<Administrator> ret = administratorLogic.GetAll();
+            daMock.VerifyAll();
+            Assert.IsTrue(ret.SequenceEqual(list));
+        }
+
+        [TestMethod]
+        public void GetAdministratorByIdOk()
         {
             Guid id = Guid.NewGuid();
             var admin = new Administrator()
@@ -62,39 +73,155 @@ namespace BusinessLogic.Test
             };
 
             daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
-            
+
             var ret = administratorLogic.Get(id);
             daMock.VerifyAll();
             Assert.IsTrue(ret.Equals(admin));
 
         }
+        [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
+        [TestMethod]
+        public void GetAdministratorByIdFail()
+        {
+            Guid id = Guid.NewGuid();
+            Administrator admin = null;
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
+            var ret = administratorLogic.Get(id);
+
+        }
 
         [TestMethod]
         public void AdministratorUpdateOk()
-        {            
+        {
             Guid id = Guid.NewGuid();
             var admin = new Administrator()
             {
-                 Id = id,
+                Id = id,
+                Name = "Dominique",
+                Email = "domi@gmail.com",
+                Password = "admin1234",
+                IsActive = true
+            };
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
+            var updatedAdmin = new Administrator()
+            {
+                Id = id,
+                Name = "Dominique Lachaise",
+                Email = "dominique@gmail.com",
+                Password = "admin1234",
+                IsActive = true
+            };
+            daMock.Setup(x => x.Update(updatedAdmin));
+            daMock.Setup(x => x.Save());
+
+            administratorLogic.Update(id, updatedAdmin);
+
+            daMock.VerifyAll();
+
+        }
+        [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
+        [TestMethod]
+        public void AdministratorUpdateAdminNoExists()
+        {
+            Guid id = Guid.NewGuid();
+            Administrator adm = null;
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(adm);
+            var updatedAdmin = new Administrator()
+            {
+                Id = id,
+                Name = "Dominique Lachaise",
+                Email = "dominique@gmail.com",
+                Password = "admin1234",
+                IsActive = true
+            };
+
+            daMock.Setup(x => x.Update(updatedAdmin));
+            daMock.Setup(x => x.Save());
+            administratorLogic.Update(id, updatedAdmin);
+        }
+
+
+        [TestMethod]
+        public void CreateAdministratorOk()
+        {
+            Guid id = Guid.NewGuid();
+            var admin = new Administrator()
+            {
+                Id = id,
+                Name = "Dominique",
+                Email = "domi@gmail.com",
+                Password = "admin1234",
+                IsActive = true
+            };
+            daMock.Setup(x => x.Add(admin)).Verifiable();
+            daMock.Setup(x => x.Save());
+            List<Administrator> list = new List<Administrator>();
+            daMock.Setup(x => x.GetAll()).Returns(list);
+            administratorLogic.Create(admin);
+            daMock.VerifyAll();
+
+        }
+
+        [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
+        [TestMethod]
+        public void CreateAdministratorFailAlreadyExists()
+        {
+            Guid id = Guid.NewGuid();
+            var admin = new Administrator()
+            {
+                Id = id,
                 Name = "Dominique",
                 Email = "domi@gmail.com",
                 Password = "admin1234",
                 IsActive = true
             };
 
-
-            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
-            daMock.Setup(x => x.Update(id,admin)).Verifiable();
+            List<Administrator> list = new List<Administrator>();
+            daMock.Setup(x => x.Add(admin)).Verifiable();
             daMock.Setup(x => x.Save());
+            daMock.Setup(x => x.GetAll()).Returns(list);
+            administratorLogic.Create(admin);
+            list.Add(admin);
+            daMock.Setup(x => x.GetAll()).Returns(list);
+            administratorLogic.Create(admin);
 
-            administratorLogic.Update(id,admin);
+        }
 
+        [TestMethod]
+        public void RemoveAdministratorOk()
+        {
+            Guid id = Guid.NewGuid();
+            Administrator admin = new Administrator
+            {
+                Id = id,
+                Name = "Dominique",
+                Email = "domi@gmail.com",
+                Password = "admin1234",
+                IsActive = true
+            };
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
+            daMock.Setup(m => m.Remove(admin));
+            daMock.Setup(m => m.Save());
+
+            administratorLogic.Delete(id);
             daMock.VerifyAll();
+        }
 
+        [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
+        [TestMethod]
+        public void RemoveAdministratorFail()
+        {
+            Administrator adminNull = null;
+
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(adminNull);
+            daMock.Setup(m => m.Remove(adminNull));
+            daMock.Setup(m => m.Save());
+
+            administratorLogic.Delete(Guid.NewGuid());
         }
 
 
     }
-    
+
 }
 
