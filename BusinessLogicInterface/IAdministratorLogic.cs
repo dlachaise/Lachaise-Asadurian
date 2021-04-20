@@ -10,8 +10,9 @@ namespace BusinessLogicInterface
 
         Administrator Get(Guid id);
 
-        void Update(Guid id, Administrator admin);
+        void Update(/*Guid id,*/ Administrator admin);
         void Delete(Guid id);
+        void Add(Administrator admin);
         Administrator Create(Administrator admin);
 
 

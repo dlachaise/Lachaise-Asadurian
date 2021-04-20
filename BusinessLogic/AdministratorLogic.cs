@@ -68,10 +68,18 @@ namespace BusinessLogic
 
         }
 
-        public void Update(Guid id, Administrator updatedAdmin)
+        public void Add(Administrator admin){
+            if(admin!=null){
+               //adminRepository.Add(admin);
+                admDA.Add(admin);
+                admDA.Save();
+            }
+        }
+
+        public void Update(/*Guid id,*/ Administrator updatedAdmin)
         {
 
-            Administrator admin = admDA.Get(id);
+            Administrator admin = admDA.Get(updatedAdmin.Id);
 
             if (admin != null)
             {
