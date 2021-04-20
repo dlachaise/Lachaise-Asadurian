@@ -1,2 +1,15 @@
 BusinessLogic.Test/obj/Debug/
 BusinessLogic.Test/bin/Debug/
+Domain/obj/Debug/
+Domain/obj/
+Domain/bin/Debug/
+DataAccess/obj/Debug/
+DataAccess/obj/
+DataAccess/bin/Debug/
+BusinessLogicInterface/obj/Debug/
+BusinessLogicInterface/obj/
+BusinessLogic.Test/obj/
+BusinessLogic/bin/Debug/
+BusinessLogic/obj/
+BusinessLogicInterface/bin/Debug/
+WebApi/obj/Debug/
