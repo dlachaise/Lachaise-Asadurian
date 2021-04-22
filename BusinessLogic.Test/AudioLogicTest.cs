@@ -31,7 +31,7 @@ namespace BusinessLogic.Test
         public void GetAllAudios()
         {
             Guid id = Guid.NewGuid();
-            Audio audio = new Audio()
+            var audio = new Audio()
             {
                 Id = id,
                 Name = "Loco por vos",
@@ -49,126 +49,117 @@ namespace BusinessLogic.Test
             daMock.VerifyAll();
             Assert.IsTrue(ret.SequenceEqual(list));
         }
+
+         [TestMethod]
+        public void GetAudioByIdOk()
+        {
+            Guid id = Guid.NewGuid();
+            var audio = new Audio()
+            {
+                Id = id,
+                Name = "Dime si eres feliz",
+                Duration = 135,
+                CreatorName = "La Champions Liga",
+                ImageUrl = "/Desktop/ImagenesAudio/DimeSiEres.png",
+                AudioUrl = "www.betterCalm.com.uy/DimeSiEres.mp3" ,
+                IsActive = true
+            };
+
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(audio);
+
+            var ret = audioLogic.Get(id);
+            daMock.VerifyAll();
+            Assert.IsTrue(ret.Equals(audio));
+
+        }
+        [TestMethod]
+        public void RemoveAudioOk()
+        {
+            Guid id = Guid.NewGuid();
+            var audio = new Audio()
+            {
+                Id = id,
+                Name = "Mia",
+                Duration = 151,
+                CreatorName = "18 Kilates",
+                ImageUrl = "/Desktop/ImagenesAudio/Mia.png",
+                AudioUrl = "www.betterCalm.com.uy/Mia.mp3" ,
+                IsActive = true
+            };
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(audio);
+            daMock.Setup(m => m.Remove(audio));
+            daMock.Setup(m => m.Save());
+
+            audioLogic.Delete(id);
+            daMock.VerifyAll();
+        }
+
         [TestMethod]
         public void GetAllTestEmptyList()
         {
-/*
-            List<Administrator> list = new List<Administrator>();
+
+            List<Audio> list = new List<Audio>();
             daMock.Setup(x => x.GetAll()).Returns(list);
 
-            IEnumerable<Administrator> ret = administratorLogic.GetAll();
-            daMock.VerifyAll();*
-            Assert.IsTrue(ret.SequenceEqual(list));*/
-        }
-
-        [TestMethod]
-        public void GetAdministratorByIdOk()
-        {
-           /* Guid id = Guid.NewGuid();
-            var admin = new Administrator()
-            {
-                Id = id,
-                Name = "Diego",
-                Email = "diego@gmail.com",
-                Password = "admin1234",
-                IsActive = true
-            };
-
-            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
-
-            var ret = administratorLogic.Get(id);
+            IEnumerable<Audio> ret = audioLogic.GetAll();
             daMock.VerifyAll();
-            Assert.IsTrue(ret.Equals(admin));*/
-
+            Assert.IsTrue(ret.SequenceEqual(list));
         }
-        [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
-        [TestMethod]
-        public void GetAdministratorByIdFail()
+
+
+         [TestMethod]
+        public void CreateAudioOk()
         {
             Guid id = Guid.NewGuid();
-            Administrator admin = null;
-            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
-            var ret = administratorLogic.Get(id);
-
-        }
-
-        [TestMethod]
-        public void AdministratorUpdateOk()
-        {
-           /* Guid id = Guid.NewGuid();
-            var admin = new Administrator()
+            var audio = new Audio()
             {
                 Id = id,
-                Name = "Dominique",
-                Email = "domi@gmail.com",
-                Password = "admin1234",
+                Name = "Eres Mia",
+                Duration = 124,
+                CreatorName = "Rome Santos",
+                ImageUrl = "/Desktop/ImagenesAudio/EresMia.png",
+                AudioUrl = "www.betterCalm.com.uy/EresMia.mp3" ,
                 IsActive = true
             };
-            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
-            var updatedAdmin = new Administrator()
-            {
-                Id = id,
-                Name = "Dominique Lachaise",
-                Email = "dominique@gmail.com",
-                Password = "admin1234",
-                IsActive = true
-            };
-            daMock.Setup(x => x.Update(updatedAdmin));
+            daMock.Setup(x => x.Add(audio)).Verifiable();
             daMock.Setup(x => x.Save());
-
-            administratorLogic.Update(id, updatedAdmin);
-
-            daMock.VerifyAll();*/
+                         
+            audioLogic.CreateAudio(audio);
+            daMock.VerifyAll();
 
         }
-        [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
+
+        [ExpectedException(typeof(Exception), "The Audio doesn't exists")]
         [TestMethod]
-        public void AdministratorUpdateAdminNoExists()
+        public void RemoveAudioFail()
         {
-            /*Guid id = Guid.NewGuid();
-            Administrator adm = null;
-            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(adm);
-            var updatedAdmin = new Administrator()
-            {
-                Id = id,
-                Name = "Dominique Lachaise",
-                Email = "dominique@gmail.com",
-                Password = "admin1234",
-                IsActive = true
-            };
+            Audio audioNull = null;
 
-            daMock.Setup(x => x.Update(updatedAdmin));
-            daMock.Setup(x => x.Save());
-            administratorLogic.Update(id, updatedAdmin);*/
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(audioNull);
+            daMock.Setup(m => m.Remove(audioNull));
+            daMock.Setup(m => m.Save());
+
+            audioLogic.Delete(Guid.NewGuid());
         }
 
-
+         [ExpectedException(typeof(Exception), "The audio doesn't exists")]
         [TestMethod]
-        public void CreateAdministratorOk()
+        public void GetAudioByIdFail()
         {
-            /*Guid id = Guid.NewGuid();
-            var admin = new Administrator()
-            {
-                Id = id,
-                Name = "Dominique",
-                Email = "domi@gmail.com",
-                Password = "admin1234",
-                IsActive = true
-            };
-            daMock.Setup(x => x.Add(admin)).Verifiable();
-            daMock.Setup(x => x.Save());
-            List<Administrator> list = new List<Administrator>();
-            daMock.Setup(x => x.GetAll()).Returns(list);
-            administratorLogic.Create(admin);
-            daMock.VerifyAll();*/
+            Guid id = Guid.NewGuid();
+            Audio audio = null;
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(audio);
+            var ret = audioLogic.Get(id);
 
         }
+
+     /*      
 
         [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
         [TestMethod]
         public void CreateAdministratorFailAlreadyExists()
         {
-           /* Guid id = Guid.NewGuid();
+            Guid id = Guid.NewGuid();
             var admin = new Administrator()
             {
                 Id = id,
@@ -185,44 +176,10 @@ namespace BusinessLogic.Test
             administratorLogic.Create(admin);
             list.Add(admin);
             daMock.Setup(x => x.GetAll()).Returns(list);
-            administratorLogic.Create(admin);*/
+            administratorLogic.Create(admin);
 
         }
-
-        [TestMethod]
-        public void RemoveAdministratorOk()
-        {
-          /*  Guid id = Guid.NewGuid();
-            Administrator admin = new Administrator
-            {
-                Id = id,
-                Name = "Dominique",
-                Email = "domi@gmail.com",
-                Password = "admin1234",
-                IsActive = true
-            };
-            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
-            daMock.Setup(m => m.Remove(admin));
-            daMock.Setup(m => m.Save());
-
-            administratorLogic.Delete(id);
-            daMock.VerifyAll();*/
-        }
-
-        [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
-        [TestMethod]
-        public void RemoveAdministratorFail()
-        {
-            /*Administrator adminNull = null;
-
-            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(adminNull);
-            daMock.Setup(m => m.Remove(adminNull));
-            daMock.Setup(m => m.Save());
-
-            administratorLogic.Delete(Guid.NewGuid());*/
-        }
-
-
+*/
     }
 
 }

@@ -30,6 +30,10 @@ namespace DataAccess
 			var category = Context.Set<Category>().Include(x => x.Audios).Where(x => x.Id == categoryId).First();
             return category.Audios.ToList();
         }
+	      public IEnumerable<Audio> GetByPlaylist(Guid idPlaylist){
+			var playList = Context.Set<Playlist>().Include(x => x.Audios).Where(x => x.Id == idPlaylist).First();
+            return playList.Audios.ToList();
+		  }
 
 		public  void  Add(Audio  entity) 
 		{

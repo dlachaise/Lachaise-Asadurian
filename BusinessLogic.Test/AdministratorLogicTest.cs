@@ -114,7 +114,7 @@ namespace BusinessLogic.Test
             daMock.Setup(x => x.Update(updatedAdmin));
             daMock.Setup(x => x.Save());
 
-            administratorLogic.Update(id, updatedAdmin);
+            administratorLogic.Update(/*id,*/ updatedAdmin);
 
             daMock.VerifyAll();
 
@@ -137,7 +137,7 @@ namespace BusinessLogic.Test
 
             daMock.Setup(x => x.Update(updatedAdmin));
             daMock.Setup(x => x.Save());
-            administratorLogic.Update(id, updatedAdmin);
+            administratorLogic.Update(/*id, */updatedAdmin);
         }
 
 

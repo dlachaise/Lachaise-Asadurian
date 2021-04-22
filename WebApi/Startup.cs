@@ -33,7 +33,8 @@ namespace WebApi
             services.AddControllers();
             services.AddScoped<IAdministratorLogic, AdministratorLogic>();
             services.AddScoped<IAdministratorRepository, AdministratorRepository>();
-            //services.AddScoped<IAudioLogic,AudioLogic>();
+            services.AddScoped<IAudioLogic, AudioLogic>();
+            services.AddScoped<IAudioRepository, AudioRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });

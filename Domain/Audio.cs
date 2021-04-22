@@ -11,5 +11,13 @@ namespace Domain
         public string AudioUrl { get; set; }
 
         public bool IsActive { get; set; }
+
+
+
+        
+        public Audio()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2OsTnPczLUEmop03qvpXNB/AyhfbuYzteaUXgP1iE0h2peY7cZndrC+JYwBy//EneNN1d4vXLrqZ03M8NxYenw==",
+  "dgSpecHash": "MSuzrv1qGKU/LzsrxQ1Z9g+8Gwl49FG3VIo36A1twAmI9KRxc2JTYhhx/25qefOsruJdh91IpLBqmM27YkOBGA==",
   "success": true,
-  "projectFilePath": "c:\\Users\\domil\\Desktop\\Obligatorio-D2-2021\\Lachaise-Asadurian\\MSP\\Domain\\Domain.csproj",
+  "projectFilePath": "C:\\Users\\Diego\\Desktop\\MSP\\Domain\\Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
