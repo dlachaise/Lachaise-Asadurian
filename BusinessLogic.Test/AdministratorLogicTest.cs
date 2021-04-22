@@ -12,7 +12,7 @@ using System.Linq;
 namespace BusinessLogic.Test
 {
     [TestClass]
-    public class AdministratorLoginTest
+    public class AdministratorLogicTest
     {
         private Mock<IAdministratorLogic> Mock;
         private Mock<IAdministratorRepository> daMock;
