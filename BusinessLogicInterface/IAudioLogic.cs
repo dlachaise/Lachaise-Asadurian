@@ -12,10 +12,8 @@ namespace BusinessLogicInterface
      IEnumerable<Audio> GetByPlaylist(Guid idPlaylist);
 
      Audio Get(Guid id);
-    void Delete(Guid id);
-     void Add(string Name, int Duration, string CreatorName, string ImageUrl, string AudioUrl,  bool IsActive  );
+     void Delete(Guid id);
+     void CreateAudio(Audio audio);
     
-     
-     
     }
 }

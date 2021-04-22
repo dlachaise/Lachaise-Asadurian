@@ -4,6 +4,7 @@ using Domain;
 using DataAccess;
 using BusinessLogicInterface;
 using System.Linq;
+//using System.Collections.IEnumerable;
 namespace BusinessLogic
 {
     public class AudioLogic : IAudioLogic
@@ -22,7 +23,7 @@ namespace BusinessLogic
         {
             this.audioLogic = aud;
         }
-        public AudioLogic(IAdudioLogic aud)
+        public AudioLogic(IAudioLogic aud)
         {
             this.iAudioLogic = aud;
         }
@@ -51,6 +52,11 @@ namespace BusinessLogic
         {
             return iaudR.GetAll().Any(x => x.Email == administrator.Email);
         }*/
+
+    public void CreateAudio(Audio audioToAdd){
+            iaudR.Add(audioToAdd);
+            iaudR.Save();
+       }
         public void Delete(Guid id)
         {
             Audio audio = iaudR.Get(id);
@@ -67,28 +73,6 @@ namespace BusinessLogic
             }
 
         }
-
-       /* public void Update(Guid id, Audio updatedAudio)
-        {
-
-            Audio audio = iaudR.Get(id);
-
-            if (audio != null)
-            {
-                audio.Name = updatedAudio.Name;
-                audio.Duration = updatedAudio.Duration;
-                audio.CreatorName = updatedAudio.CreatorName;
-                audio.ImageUrl = updatedAudio.ImageUrl;
-                audio.AudioUrl = updatedAudio.AudioUrl;
-
-                iaudR.Update(audio);
-                iaudR.Save();
-            }
-            else
-            {
-                throw new Exception("The Audio doesn't exists");
-            }
-        }*/
 
         public Audio Get(Guid id)
         {
@@ -107,5 +91,13 @@ namespace BusinessLogic
         {
             return this.iaudR.GetAll();
         }
+
+        public IEnumerable<Audio> GetByCategory(Guid categoryId){
+            return iaudR.GetByCategory(categoryId);
+        }
+
+       public IEnumerable<Audio> GetByPlaylist(Guid idPlaylist){
+           return iaudR.GetByPlaylist(idPlaylist);
+       }
     }
 }
