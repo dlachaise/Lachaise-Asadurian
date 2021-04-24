@@ -81,7 +81,7 @@ namespace BusinessLogic
         public void Update(Guid id, Administrator updatedAdmin)
         {
 
-            Administrator admin = admDA.Get(updatedAdmin.Id);
+            Administrator admin = admDA.Get(id);
 
             if (admin != null)
             {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain;
-using DataAccess;
 using BusinessLogicInterface;
 using System.Linq;
+using DataAccess;
 
 namespace BusinessLogic
 {
@@ -20,7 +20,7 @@ namespace BusinessLogic
             this.iPsycLogic = psycsLogic;
         }
 
-        public Psychologist Add(Psychologist psyc)
+        public Psychologist Create(Psychologist psyc)
         {
             psycDA.Add(psyc);
             psycDA.Save();
@@ -31,7 +31,7 @@ namespace BusinessLogic
         {
             Psychologist psyc = psycDA.Get(id);
 
-            if (psyc == null)
+            if (psyc != null)
             {
                 psyc.IsActive = false;
                 psycDA.Remove(psyc);
@@ -44,7 +44,7 @@ namespace BusinessLogic
 
         }
 
-        public Psychologist Update(Guid id, Psychologist updatedPsychologyst)
+        public void Update(Guid id, Psychologist updatedPsychologyst)
         {
 
             Psychologist psyco = psycDA.Get(updatedPsychologyst.Id);
@@ -52,14 +52,13 @@ namespace BusinessLogic
             if (psyco != null)
             {
                 psyco.Update(updatedPsychologyst);
-                psycDA.Update(psyco);
+                psycDA.Update(updatedPsychologyst);
                 psycDA.Save();
             }
             else
             {
                 throw new Exception("The psychologist doesn't exists");
             }
-            return updatedPsychologyst;
         }
 
         public Psychologist Get(Guid id)
@@ -87,11 +86,11 @@ namespace BusinessLogic
 
         }
 
-        public IEnumerable<Psychologist> GetByDate(IEnumerable<Psychologist> sublistPsyco)
-        {
-            DateTime today = DateTime.Now;
-            today.AddDays(1);
-            return sublistPsyco.Where(x => (x.getNextDayAvailable() < today.AddDays(7)));
-        }
+        // public IEnumerable<Psychologist> GetByDate(IEnumerable<Psychologist> sublistPsyco)
+        // {
+        //     // DateTime today = DateTime.Now;
+        //     // today.AddDays(1);
+        //     // return sublistPsyco.Where(x => (x.getNextDayAvailable() < today.AddDays(7)));
+        // }
     }
 }

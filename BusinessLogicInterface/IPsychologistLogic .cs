@@ -7,13 +7,13 @@ namespace BusinessLogicInterface
     public interface IPsychologistLogic
     {
         IEnumerable<Psychologist> GetAll();
-        Psychologist GetByPathologyAndExpert(Guid pathologyId);
+        //  Psychologist GetByPathologyAndExpert(Guid pathologyId);
 
         Psychologist Get(Guid id);
 
-        void Update(Psychologist Psychologist);
+        void Update(Guid id, Psychologist Psychologist);
         void Delete(Guid id);
-        void Add(string Name, string MeetingType, string Address, bool IsActive);
+        Psychologist Create(Psychologist psyco);
 
     }
 

@@ -54,7 +54,7 @@ namespace BusinessLogic.Test
                 MeetingType = "presencial",
                 Address = "",
                 IsActive = true,
-                Pathologies = patList
+                Pathologies = patList1
             };
             psyco2 = new Psychologist()
             {
@@ -88,165 +88,127 @@ namespace BusinessLogic.Test
             daMock.VerifyAll();
             Assert.IsTrue(ret.SequenceEqual(list));
         }
+
+
+        [TestMethod]
+        public void GetAllTestEmptyList()
+        {
+
+            List<Psychologist> list = new List<Psychologist>();
+            daMock.Setup(x => x.GetAll()).Returns(list);
+
+            IEnumerable<Psychologist> ret = psychologistLogic.GetAll();
+            daMock.VerifyAll();
+            Assert.IsTrue(ret.SequenceEqual(list));
+        }
+
+
+        [TestMethod]
+        public void GetPsychologistByIdOk()
+        {
+            Guid id = this.psyco1.Id;
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(psyco1);
+            var ret = psychologistLogic.Get(id);
+            daMock.VerifyAll();
+            Assert.IsTrue(ret.Equals(psyco1));
+
+        }
+        [ExpectedException(typeof(Exception), "The psychologist doesn't exists")]
+        [TestMethod]
+        public void GetPsychologistByIdFail()
+        {
+            Guid id = Guid.NewGuid();
+            Psychologist psyco = null;
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(psyco);
+            var ret = psychologistLogic.Get(id);
+        }
+
+
+        [TestMethod]
+        public void PsychologistUpdateOk()
+        {
+            Guid id = this.psyco1.Id;
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(psyco1);
+            var updatedPsyco = new Psychologist()
+            {
+                Id = id,
+                Name = "Joaquin Perez",
+                MeetingType = "virtual",
+                Address = "",
+                IsActive = true,
+                Pathologies = patList1
+            };
+            daMock.Setup(x => x.Update(updatedPsyco));
+            daMock.Setup(x => x.Save());
+
+            psychologistLogic.Update(id, updatedPsyco);
+
+            daMock.VerifyAll();
+
+        }
+
+        [ExpectedException(typeof(Exception), "The psychologist doesn't exists")]
+        [TestMethod]
+        public void PsychologistUpdateAdminNoExists()
+        {
+            Guid id = Guid.NewGuid();
+            Psychologist psyco = null;
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(psyco);
+            var updatedPsyco = new Psychologist()
+            {
+                Id = id,
+                Name = "Joaquin Perez",
+                MeetingType = "virtual",
+                Address = "",
+                IsActive = true,
+                Pathologies = patList1
+            };
+            daMock.Setup(x => x.Update(updatedPsyco));
+            daMock.Setup(x => x.Save());
+            psychologistLogic.Update(id, updatedPsyco);
+        }
+
+        [TestMethod]
+        public void CreatePsychologistOk()
+        {
+
+            daMock.Setup(x => x.Add(psyco1)).Verifiable();
+            daMock.Setup(x => x.Save());
+            psychologistLogic.Create(psyco1);
+            daMock.VerifyAll();
+
+        }
+
+
+
+
+
+        [TestMethod]
+        public void RemovePsychologistOk()
+        {
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(psyco1);
+            daMock.Setup(m => m.Remove(psyco1));
+            daMock.Setup(m => m.Save());
+
+            psychologistLogic.Delete(psyco1.Id);
+            daMock.VerifyAll();
+        }
+
+        [ExpectedException(typeof(Exception), "The psychologist doesn't exists")]
+        [TestMethod]
+        public void RemovePsychologistFail()
+        {
+            Psychologist adminNull = null;
+
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(adminNull);
+            daMock.Setup(m => m.Remove(adminNull));
+            daMock.Setup(m => m.Save());
+
+            psychologistLogic.Delete(Guid.NewGuid());
+        }
+
+
     }
+
 }
-//         [TestMethod]
-//         public void GetAllTestEmptyList()
-//         {
-
-//             List<Psychologist> list = new List<Psychologist>();
-//             daMock.Setup(x => x.GetAll()).Returns(list);
-
-//             IEnumerable<Psychologist> ret = psychologistLogic.GetAll();
-//             daMock.VerifyAll();
-//             Assert.IsTrue(ret.SequenceEqual(list));
-//         }
-
-//         [TestMethod]
-//         public void GetPsychologistByIdOk()
-//         {
-//             Guid id = this.psyco1.id;
-//             daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(psyco1);
-//             var ret = psychologistLogic.Get(id);
-//             daMock.VerifyAll();
-//             Assert.IsTrue(ret.Equals(admin));
-
-//         }
-//         [ExpectedException(typeof(Exception), "The psychologist doesn't exists")]
-//         [TestMethod]
-//         public void GetPsychologistByIdFail()
-//         {
-//             Guid id = Guid.NewGuid();
-//             Psychologist psyco = null;
-//             daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(psyco);
-//             var ret = psychologistLogic.Get(id);
-//         }
-
-//         [TestMethod]
-//         public void PsychologistUpdateOk()
-//         {
-//             Guid id = Guid.NewGuid();
-//             daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(psyco1);
-//             var updatedPsyco = new Psychologist()
-//             {
-//                 Id = Guid.NewGuid(),
-//                 Name = "Joaquin Perez",
-//                 MeetingType = "virtual",
-//                 Address = "",
-//                 IsActive = true,
-//                 Pathologies = patList
-//             };
-//             daMock.Setup(x => x.Update(updatedPsyco));
-//             daMock.Setup(x => x.Save());
-
-//             psychologistLogic.Update(id, updatedPsyco);
-
-//             daMock.VerifyAll();
-
-//         }
-//         [ExpectedException(typeof(Exception), "The psychologist doesn't exists")]
-//         [TestMethod]
-//         public void PsychologistUpdateAdminNoExists()
-//         {
-//             Guid id = Guid.NewGuid();
-//             Psychologist adm = null;
-//             daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(adm);
-//             var updatedAdmin = new Psychologist()
-//             {
-//                 Id = id,
-//                 Name = "Dominique Lachaise",
-//                 Email = "dominique@gmail.com",
-//                 Password = "admin1234",
-//                 IsActive = true
-//             };
-
-//             daMock.Setup(x => x.Update(updatedAdmin));
-//             daMock.Setup(x => x.Save());
-//             psychologistLogic.Update(id, updatedAdmin);
-//         }
-
-
-//         [TestMethod]
-//         public void CreatePsychologistOk()
-//         {
-//             Guid id = Guid.NewGuid();
-//             var admin = new Psychologist()
-//             {
-//                 Id = id,
-//                 Name = "Dominique",
-//                 Email = "domi@gmail.com",
-//                 Password = "admin1234",
-//                 IsActive = true
-//             };
-//             daMock.Setup(x => x.Add(admin)).Verifiable();
-//             daMock.Setup(x => x.Save());
-//             List<Psychologist> list = new List<Psychologist>();
-//             daMock.Setup(x => x.GetAll()).Returns(list);
-//             psychologistLogic.Create(admin);
-//             daMock.VerifyAll();
-
-//         }
-
-//         [ExpectedException(typeof(Exception), "The psychologist doesn't exists")]
-//         [TestMethod]
-//         public void CreatePsychologistFailAlreadyExists()
-//         {
-//             Guid id = Guid.NewGuid();
-//             var admin = new Psychologist()
-//             {
-//                 Id = id,
-//                 Name = "Dominique",
-//                 Email = "domi@gmail.com",
-//                 Password = "admin1234",
-//                 IsActive = true
-//             };
-
-//             List<Psychologist> list = new List<Psychologist>();
-//             daMock.Setup(x => x.Add(admin)).Verifiable();
-//             daMock.Setup(x => x.Save());
-//             daMock.Setup(x => x.GetAll()).Returns(list);
-//             psychologistLogic.Create(admin);
-//             list.Add(admin);
-//             daMock.Setup(x => x.GetAll()).Returns(list);
-//             psychologistLogic.Create(admin);
-
-//         }
-
-//         [TestMethod]
-//         public void RemovePsychologistOk()
-//         {
-//             Guid id = Guid.NewGuid();
-//             Psychologist admin = new Psychologist
-//             {
-//                 Id = id,
-//                 Name = "Dominique",
-//                 Email = "domi@gmail.com",
-//                 Password = "admin1234",
-//                 IsActive = true
-//             };
-//             daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
-//             daMock.Setup(m => m.Remove(admin));
-//             daMock.Setup(m => m.Save());
-
-//             psychologistLogic.Delete(id);
-//             daMock.VerifyAll();
-//         }
-
-//         [ExpectedException(typeof(Exception), "The psychologist doesn't exists")]
-//         [TestMethod]
-//         public void RemovePsychologistFail()
-//         {
-//             Psychologist adminNull = null;
-
-//             daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(adminNull);
-//             daMock.Setup(m => m.Remove(adminNull));
-//             daMock.Setup(m => m.Save());
-
-//             psychologistLogic.Delete(Guid.NewGuid());
-//         }
-
-
-//     }
-
-// }
 
