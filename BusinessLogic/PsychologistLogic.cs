@@ -7,81 +7,91 @@ using System.Linq;
 
 namespace BusinessLogic
 {
-    public class PsychologistLogic //: IPsychologistLogic
+    public class PsychologistLogic : IPsychologistLogic
     {
-        //     private PsychologistRepository psychoRepoistory;
-
-        //     public PsychologistLogic()
-        //     {
-        //         DataContext context = ContextFactory.GetNewContext();
-        //         psychoRepoistory = new PsychologistRepository(context);
-        //     }
-
-        //     public IEnumerable<Psychologist> GetByPathology(Guid pathology)
-        //     {
-        //         return psychoRepoistory.GetAll().Where(psyc=> psyc.Pathologies.Any(pat=> pat.Id == pathology));
-
-        //     }
-
-        //     public IEnumerable<Psychologist> GetAvailable(){
-        //        DateTime today = DateTime.Now;
-        //         var pedo = 
-        //     }
+        private IPsychologistRepository psycDA;
+        private PsychologistLogic psycoLogic;
+        private IPsychologistLogic iPsycLogic;
 
 
-        //     public void Create(Psychologist admin)
-        //     {
-        //         psychoRepoistory.Add(admin);
-        //         psychoRepoistory.Save();
-        //     }
+        public PsychologistLogic(IPsychologistRepository repository, IPsychologistLogic psycsLogic)
+        {
+            this.psycDA = repository;
+            this.iPsycLogic = psycsLogic;
+        }
 
-        //     public void Delete(Guid id)
-        //     {
-        //         Psychologist admin = psychoRepoistory.Get(id);
+        public Psychologist Add(Psychologist psyc)
+        {
+            psycDA.Add(psyc);
+            psycDA.Save();
+            return psyc;
+        }
 
-        //         if (admin == null)
-        //         {
-        //             //error: el admin no existe
-        //         }
-        //         admin.IsActive = false;
+        public void Delete(Guid id)
+        {
+            Psychologist psyc = psycDA.Get(id);
 
-        //         //psychoRepoistory.Remove(admin);
-        //         psychoRepoistory.Save();
-        //     }
+            if (psyc == null)
+            {
+                psyc.IsActive = false;
+                psycDA.Remove(psyc);
+                psycDA.Save();
+            }
+            else
+            {
+                throw new Exception("Psychologist does not exist");
+            }
 
-        //     public void Update(Guid id, Psychologist updatedAdmin)
-        //     {
+        }
 
-        //         Psychologist admin = psychoRepoistory.Get(id);
+        public Psychologist Update(Guid id, Psychologist updatedPsychologyst)
+        {
 
-        //         if (admin == null)
-        //         {
-        //             //error: el administrador no existe
-        //         }
+            Psychologist psyco = psycDA.Get(updatedPsychologyst.Id);
 
-        //         admin.IsActive = updatedAdmin.IsActive;
-        //         admin.Name = updatedAdmin.Name;
-        //         admin.Password = updatedAdmin.Password;
-        //         admin.Email = updatedAdmin.Email;
+            if (psyco != null)
+            {
+                psyco.Update(updatedPsychologyst);
+                psycDA.Update(psyco);
+                psycDA.Save();
+            }
+            else
+            {
+                throw new Exception("The psychologist doesn't exists");
+            }
+            return updatedPsychologyst;
+        }
 
-        //         psychoRepoistory.Update(admin);
-        //         psychoRepoistory.Save();
-        //     }
+        public Psychologist Get(Guid id)
+        {
+            Psychologist psyc = psycDA.Get(id);
+            if (psyc != null && psyc.IsActive == true)
+            {
+                return psyc;
+            }
+            else
+            {
+                throw new Exception("Psychologist does not exist");
+            }
+        }
 
-        //     public Psychologist Get(Guid id)
-        //     {
-        //         Psychologist admin = psychoRepoistory.Get(id);
-        //         if (admin == null)
-        //         {
-        //             //error el administrador no existe
-        //         }
-        //         return admin;
-        //     }
+        public IEnumerable<Psychologist> GetAll()
+        {
+            return psycDA.GetAll();
+        }
 
-        //     public IEnumerable<Psychologist> GetAll()
-        //     {
-        //         return psychoRepoistory.GetAll();
-        //     }
-        // }
+
+        public IEnumerable<Psychologist> GetByPathology(Guid pathology)
+        {
+            return psycDA.GetAll().Where(psyc => psyc.Pathologies.Any(pat => pat.Id == pathology));
+
+        }
+
+        public IEnumerable<Psychologist> GetByDate(IEnumerable<Psychologist> sublistPsyco)
+        {
+            DateTime today = DateTime.Now;
+            today.AddDays(1);
+            return sublistPsyco.Where(x => (x.getNextDayAvailable() < today.AddDays(7)));
+        }
     }
 }
