@@ -20,11 +20,11 @@ namespace DataAccess
             return Context.Set<Playlist>().First(x => x.Id == id);
         }
 
-        public IEnumerable<Playlist> GetByCategory(Guid categoryId)
+      /*  public IEnumerable<Playlist> GetByCategory(Guid categoryId)
         {
             var category = Context.Set<Category>().Include(x => x.Playlists).Where(x => x.Id == categoryId).First();
             return category.Playlists.ToList();
-        }
+        }*/
 
         public IEnumerable<Playlist> GetAll()
         {
@@ -35,9 +35,6 @@ namespace DataAccess
         {
             Context.Set<Playlist>().Add(entity);
         }
-
-
-
 
         public void Save()
         {
