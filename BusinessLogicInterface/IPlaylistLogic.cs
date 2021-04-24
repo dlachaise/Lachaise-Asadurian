@@ -8,12 +8,13 @@ namespace BusinessLogicInterface
     {
      IEnumerable<Playlist> GetAll();
 
-     IEnumerable<Playlist> GetByCategory(Guid idCategory);
+     /*IEnumerable<Playlist> GetByCategory(Guid idCategory);
+     IEnumerable<Playlist> GetByPlaylist(Guid idPlaylist);*/
+
 
      Playlist Get(Guid id);
-    void Delete(Guid id);
-     void Add(string Name, int Duration, string CreatorName, string ImageUrl, string PlaylistUrl,  bool IsActive  );
-    
+     void Delete(Guid id);
+     //void CreateAudio(Playlist playL);
      
      
     }
