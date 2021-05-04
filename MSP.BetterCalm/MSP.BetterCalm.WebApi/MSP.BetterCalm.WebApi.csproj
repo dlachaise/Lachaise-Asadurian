@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+       <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  
+
+  <ItemGroup>
+    <ProjectReference Include="..\MSP.BetterCalm.BusinessLogic\MSP.BetterCalm.BusinessLogic.csproj" />
+    <ProjectReference Include="..\MSP.BetterCalm.DataAccess\MSP.BetterCalm.DataAccess.csproj" />
+    <ProjectReference Include="..\MSP.BetterCalm.Domain\MSP.BetterCalm.Domain.csproj" />
+    <ProjectReference Include="..\MSP.BetterCalm.DataAccess.Interface\MSP.BetterCalm.DataAccess.Interface.csproj" />
+    <ProjectReference Include="..\MSP.BetterCalm.BusinessLogic.Interface\MSP.BetterCalm.BusinessLogic.Interface.csproj" />
+  </ItemGroup>
+
+  
+
+  <ItemGroup>
+  
+  
+  </ItemGroup>
+
+  
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
+  </ItemGroup>
+
+</Project>
