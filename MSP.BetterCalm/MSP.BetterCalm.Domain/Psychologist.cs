@@ -16,7 +16,7 @@ namespace MSP.BetterCalm.Domain
         public DateTime StartDate { get; set; }
 
 
-
+   
         public Psychologist Update(Psychologist entity)
         {
             if (entity.Name != null)

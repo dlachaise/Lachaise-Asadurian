@@ -14,11 +14,13 @@ namespace MSP.BetterCalm.BusinessLogic.Test
     [TestClass]
     public class ConsultationLogicTest
     {
+
         private Mock<IConsultationLogic> Mock;
         private Mock<IRepository<Consultation>> daMock;
         private Mock<IPsychologistLogic> MockPsycho;
 
         ConsultationLogic consultationLogic;
+
         private Psychologist psycho;
 
         [TestInitialize]
@@ -47,7 +49,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 Address = "Julio cesar 1569",
                 IsActive = true,
                 Pathologies = patList1,
-                StartDate = DateTime.Now.AddDays(-3)
+                StartDate = DateTime.Now.AddDays(-3),
+                MeetingList = new SortedList<DateTime, int>()
             };
         }
 
@@ -82,14 +85,11 @@ namespace MSP.BetterCalm.BusinessLogic.Test
         [TestMethod]
         public void CreateConsultationOk()
         {
-            List<Pathology> pat = new List<Pathology>{
-                new Pathology{
-                    Id = Guid.NewGuid(),
-                    Name = "Estres"
-                },
-
+            var pathology = new Pathology()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Estres"
             };
-
             Guid id = Guid.NewGuid();
             var consult = new Consultation()
             {
@@ -100,17 +100,23 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 UserCompleteName = "Juan manuel",
                 UserBirthDate = "11/11/1994",
                 UserCel = "099894147",
-                UserEmail = "diego@gmail.com"
+                UserEmail = "diego@gmail.com",
+                Psychologist = psycho
             };
-
+            var psychoToReturn = new List<Psychologist> { this.psycho };
+            var psychoToReturnAvailable = new List<Psychologist> { this.psycho };
             daMock.Setup(x => x.Create(consult)).Verifiable();
             daMock.Setup(x => x.Save());
-            
-            List<Consultation> list = new List<Consultation>();
-            daMock.Setup(x => x.GetAll()).Returns(list);
-            consultationLogic.CreateConsultation(consult, pat.First().Id); //ver como pasarle la patologia para que nosea nula
-            daMock.VerifyAll();
 
+            List<Consultation> list = new List<Consultation>();
+            MockPsycho.Setup(x => x.GetByPathology(pathology.Id)).Returns(psychoToReturn);
+            MockPsycho.Setup(x => x.GetPsychoAvailable(psychoToReturn, consult.Date)).Returns(psychoToReturnAvailable);
+            MockPsycho.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(this.psycho);
+
+            consultationLogic.CreateConsultation(consult, pathology.Id); //ver como pasarle la patologia para que nosea nula
+            
+            daMock.VerifyAll();
+            Assert.AreEqual(consult.Psychologist.Id, psycho.Id);
         }
 
 

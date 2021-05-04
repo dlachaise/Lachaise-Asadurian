@@ -26,7 +26,6 @@ namespace MSP.BetterCalm.BusinessLogic
             this.psychLogic = iPsychoLogic;
         }
 
-        //PROBANDO COMO MIERDA HACER LA CONSULTA
 
         public void CreateConsultation(Consultation consult, Guid pathologyId)
         {
@@ -39,13 +38,14 @@ namespace MSP.BetterCalm.BusinessLogic
             {
                 var listPsychologistAvailable = psychLogic.GetPsychoAvailable(listPsychologist, consult.Date);
                 var psychoForConsultation = psychLogic.OlderPsycho(listPsychologistAvailable);
+                
                 consult.Psychologist = psychoForConsultation;
 
+                iConsultationR.Create(consult);
+                iConsultationR.Save();
             }
         }
 
-
-        // HASTA CAAAAAAAAAAAAAAAAAAAAAA
         public Consultation Get(Guid id)
         {
             Consultation consultation = iConsultationR.Get(id);
