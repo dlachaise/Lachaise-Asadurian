@@ -37,13 +37,17 @@ namespace MSP.BetterCalm.BusinessLogic
             else
             {
                 var listPsychologistAvailable = psychLogic.GetPsychoAvailable(listPsychologist, consult.Date);
-                var psychoForConsultation = psychLogic.OlderPsycho(listPsychologistAvailable);
-                
-                consult.Psychologist = psychoForConsultation;
 
+                if(listPsychologistAvailable == null){
+                     throw new Exception("There are no psychologists available for this date");
+                }else {
+                    var psychoForConsultation = psychLogic.OlderPsycho(listPsychologistAvailable);
+                     consult.Psychologist = psychoForConsultation;
+                }
+                
+            }
                 iConsultationR.Create(consult);
                 iConsultationR.Save();
-            }
         }
 
         public Consultation Get(Guid id)

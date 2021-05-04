@@ -84,7 +84,7 @@ namespace MSP.BetterCalm.BusinessLogic
 
         }
 
-        public List<Psychologist>/*IEnumerable<Psychologist>*/ GetPsychoAvailable(IEnumerable<Psychologist> sublistPsyco, DateTime meetingDate)
+        public List<Psychologist> GetPsychoAvailable(IEnumerable<Psychologist> sublistPsyco, DateTime meetingDate)
         {
 
             List<Psychologist> psychosAvailable = new List<Psychologist>();

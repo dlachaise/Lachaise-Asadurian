@@ -107,51 +107,90 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             var psychoToReturnAvailable = new List<Psychologist> { this.psycho };
             daMock.Setup(x => x.Create(consult)).Verifiable();
             daMock.Setup(x => x.Save());
-
-            List<Consultation> list = new List<Consultation>();
+           
             MockPsycho.Setup(x => x.GetByPathology(pathology.Id)).Returns(psychoToReturn);
             MockPsycho.Setup(x => x.GetPsychoAvailable(psychoToReturn, consult.Date)).Returns(psychoToReturnAvailable);
             MockPsycho.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(this.psycho);
 
-            consultationLogic.CreateConsultation(consult, pathology.Id); //ver como pasarle la patologia para que nosea nula
-            
+            consultationLogic.CreateConsultation(consult, pathology.Id); 
             daMock.VerifyAll();
             Assert.AreEqual(consult.Psychologist.Id, psycho.Id);
         }
 
 
-        /* [TestMethod]
-        public void GetCategoryByIdOk()
+        [ExpectedException(typeof(Exception), "There are no psychologists available for this pathology")]
+        [TestMethod]
+        public void NoPsychologistAvailableToThisPathology()
         {
+        var pathology = new Pathology()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Mal Humor"
+            };
             Guid id = Guid.NewGuid();
-            var category = new Category()
+            var consult = new Consultation()
             {
                 Id = id,
-                Name = "Meditar",
-                Audios =  new List<Audio>(),
-                Playlists =  new List<Playlist>()
+                MeetingType = 1,
+                MeetingLink = "www.meetGoogle.com",
+                Date = DateTime.Now,
+                UserCompleteName = "Diego Lopez",
+                UserBirthDate = "01/10/1994",
+                UserCel = "0996225836",
+                UserEmail = "maria@gmail.com",
+                Psychologist = psycho
             };
+            
+             var psychoToReturn = new List<Psychologist> { this.psycho };
+             List<Psychologist> psychoToReturnAvailable = null;
+            daMock.Setup(x => x.Create(consult)).Verifiable();
+            daMock.Setup(x => x.Save());
 
-            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(category);
+            MockPsycho.Setup(x => x.GetByPathology(pathology.Id)).Returns(psychoToReturn);
+            MockPsycho.Setup(x => x.GetPsychoAvailable(psychoToReturn, consult.Date)).Returns(psychoToReturnAvailable);
+            MockPsycho.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(this.psycho);
 
-            var ret = categoryLogic.Get(id);
+            consultationLogic.CreateConsultation(consult, pathology.Id); 
             daMock.VerifyAll();
-            Assert.IsTrue(ret.Equals(category));
-
+            Assert.AreNotEqual(consult.Psychologist.Id, psycho.Id);
         }
-  
-        [ExpectedException(typeof(Exception), "The Category doesn't exists")]
+
+
+         [ExpectedException(typeof(Exception), "There are no psychologists available for this date")]
         [TestMethod]
-        public void GetCategoryByIdFail()
+          public void NoPsychologistAvailableForDate()
         {
+        var pathology = new Pathology()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Estres"
+            };
             Guid id = Guid.NewGuid();
-            Category category = null;
-            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(category);
-            var ret = categoryLogic.Get(id);
+            var consult = new Consultation()
+            {
+                Id = id,
+                MeetingType = 1,
+                MeetingLink = "www.teams.com",
+                Date = DateTime.Now,
+                UserCompleteName = "Mariana Haedo",
+                UserBirthDate = "01/10/1994",
+                UserCel = "09965848",
+                UserEmail = "mariana@gmail.com",
+                Psychologist = psycho
+            };
+            List<Psychologist> psychoToReturn = null;
+            var psychoToReturnAvailable = new List<Psychologist> { this.psycho };
+            daMock.Setup(x => x.Create(consult)).Verifiable();
+            daMock.Setup(x => x.Save());
+            
+            MockPsycho.Setup(x => x.GetByPathology(pathology.Id)).Returns(psychoToReturn);
+            MockPsycho.Setup(x => x.GetPsychoAvailable(psychoToReturn, consult.Date)).Returns(psychoToReturnAvailable);
+            MockPsycho.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(this.psycho);
 
+            consultationLogic.CreateConsultation(consult, pathology.Id); 
+            daMock.VerifyAll();
+            Assert.AreNotEqual(consult.Psychologist.Id, psycho.Id);
         }
-*/
-
 
     }
 }
