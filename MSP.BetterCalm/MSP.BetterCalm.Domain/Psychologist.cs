@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MSP.BetterCalm.Domain
 {
@@ -11,12 +12,14 @@ namespace MSP.BetterCalm.Domain
         public string Address { get; set; }
         public bool IsActive { get; set; }
         public IEnumerable<Pathology> Pathologies { get; set; }
+
+        [NotMapped]
         public SortedList<DateTime, int> MeetingList { get; set; }
 
         public DateTime StartDate { get; set; }
 
 
-   
+
         public Psychologist Update(Psychologist entity)
         {
             if (entity.Name != null)

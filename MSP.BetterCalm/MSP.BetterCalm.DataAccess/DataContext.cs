@@ -15,5 +15,9 @@ namespace MSP.BetterCalm.DataAccess
         public DbSet<Consultation> Consultations { get; set; }
 
         public DataContext(DbContextOptions options) : base(options) { }
+
+
     }
+
+
 }

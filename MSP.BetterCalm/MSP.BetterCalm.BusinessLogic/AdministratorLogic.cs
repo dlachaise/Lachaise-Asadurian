@@ -72,8 +72,9 @@ namespace MSP.BetterCalm.BusinessLogic
 
         public Administrator Get(Guid id)
         {
+            
             Administrator admin = admDA.Get(id);
-            if (admin != null && admin.IsActive == true)
+            if (admin != null)
             {
                 return admin;
             }
@@ -85,7 +86,7 @@ namespace MSP.BetterCalm.BusinessLogic
 
         public IEnumerable<Administrator> GetAll()
         {
-            return this.admDA.GetAll();
+            return this.admDA.GetAll().Where(y => y.IsActive == true);
         }
     }
 }

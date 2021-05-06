@@ -4,14 +4,16 @@ using MSP.BetterCalm.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MSP.BetterCalm.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210505011536_OtherTables")]
+    partial class OtherTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,21 +49,6 @@ namespace MSP.BetterCalm.DataAccess.Migrations
                     b.HasIndex("audioPlaylistId");
 
                     b.ToTable("AudioPlaylist");
-                });
-
-            modelBuilder.Entity("CategoryPlaylist", b =>
-                {
-                    b.Property<Guid>("CategoriesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PlaylistsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("CategoriesId", "PlaylistsId");
-
-                    b.HasIndex("PlaylistsId");
-
-                    b.ToTable("CategoryPlaylist");
                 });
 
             modelBuilder.Entity("MSP.BetterCalm.Domain.Administrator", b =>
@@ -192,6 +179,9 @@ namespace MSP.BetterCalm.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -202,6 +192,8 @@ namespace MSP.BetterCalm.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Playlists");
                 });
@@ -262,21 +254,6 @@ namespace MSP.BetterCalm.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CategoryPlaylist", b =>
-                {
-                    b.HasOne("MSP.BetterCalm.Domain.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MSP.BetterCalm.Domain.Playlist", null)
-                        .WithMany()
-                        .HasForeignKey("PlaylistsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("MSP.BetterCalm.Domain.Consultation", b =>
                 {
                     b.HasOne("MSP.BetterCalm.Domain.Psychologist", "Psychologist")
@@ -291,6 +268,18 @@ namespace MSP.BetterCalm.DataAccess.Migrations
                     b.HasOne("MSP.BetterCalm.Domain.Psychologist", null)
                         .WithMany("Pathologies")
                         .HasForeignKey("PsychologistId");
+                });
+
+            modelBuilder.Entity("MSP.BetterCalm.Domain.Playlist", b =>
+                {
+                    b.HasOne("MSP.BetterCalm.Domain.Category", null)
+                        .WithMany("Playlists")
+                        .HasForeignKey("CategoryId");
+                });
+
+            modelBuilder.Entity("MSP.BetterCalm.Domain.Category", b =>
+                {
+                    b.Navigation("Playlists");
                 });
 
             modelBuilder.Entity("MSP.BetterCalm.Domain.Psychologist", b =>

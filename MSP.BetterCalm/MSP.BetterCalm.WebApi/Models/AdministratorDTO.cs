@@ -12,7 +12,7 @@ namespace MSP.BetterCalm.WebApi.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
+        public bool IsActive { get; set; }
 
         public AdministratorDTO(Administrator adm)
         {
@@ -20,7 +20,7 @@ namespace MSP.BetterCalm.WebApi.Models
             this.Id = adm.Id;
             this.Name = adm.Name;
             this.Email = adm.Email;
-            this.Password = adm.Password;
+            this.IsActive = adm.IsActive;
 
         }
 
@@ -35,7 +35,7 @@ namespace MSP.BetterCalm.WebApi.Models
             Id = this.Id,
             Name = this.Name,
             Email = this.Email,
-            Password = this.Password
+            IsActive = this.IsActive
 
         };
 
@@ -51,8 +51,6 @@ namespace MSP.BetterCalm.WebApi.Models
                     result = this.Name.Equals(model.Name);
                 if (model.Email != null)
                     result = this.Email.Equals(model.Email);
-                if (model.Password != null)
-                    result = this.Password.Equals(model.Password);
 
             }
 

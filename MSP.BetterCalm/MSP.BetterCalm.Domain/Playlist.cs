@@ -10,5 +10,6 @@ namespace MSP.BetterCalm.Domain
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public List<Audio> Audios { get; set; }
+        public List<Category> Categories { get; set; }
     }
 }

@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Collections.Generic;
-
 using System.Text;
 using MSP.BetterCalm.WebApi.Controllers;
 using MSP.BetterCalm.WebApi.Models;
@@ -167,21 +166,3 @@ namespace MSP.BetterCalm.WebApi.Test
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     }
-// }

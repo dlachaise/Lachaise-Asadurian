@@ -37,8 +37,6 @@ namespace MSP.BetterCalm.DataAccess
 
         private static DbContextOptions GetSqlConfig(DbContextOptionsBuilder builder)
         {
-            //TODO: Se puede mejorar esto colocando en un archivo externo y obteniendo
-            // desde allí la información.
             builder.UseSqlServer(@"Server=LAPTOP-9P85EPU1\SQLEXPRESS;Database=MSPBetterCalmDB;Trusted_Connection=True;MultipleActiveResultSets=True;");
             return builder.Options;
         }

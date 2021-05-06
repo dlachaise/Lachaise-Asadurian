@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace MSP.BetterCalm.Domain
 {
@@ -12,6 +13,9 @@ namespace MSP.BetterCalm.Domain
         public string AudioUrl { get; set; }
 
         public bool IsActive { get; set; }
+
+        public List<Playlist> Playlists { get; set; }
+        public List<Category> Categories { get; set; }
 
 
 
