@@ -6,7 +6,7 @@ namespace MSP.BetterCalm.Domain
     {
         public Guid Id { get; set; }
         public int MeetingType { get; set; }
-        public string MeetingLink { get; set; }
+        public string MeetingAdress { get; set; }
         public DateTime Date { get; set; }
         public string UserCompleteName { get; set; }
 

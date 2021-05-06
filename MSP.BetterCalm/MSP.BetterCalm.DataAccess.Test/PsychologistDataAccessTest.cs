@@ -1,11 +1,9 @@
-﻿using MSP.BetterCalm.DataAccess;
-using MSP.BetterCalm.Domain;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MSP.BetterCalm.Domain;
 
 namespace MSP.BetterCalm.DataAccess.Test
 {
@@ -35,7 +33,8 @@ namespace MSP.BetterCalm.DataAccess.Test
             {
                 Id = id,
                 Name = "Joaquin Perez",
-                MeetingType = "presencial",
+                // MeetingType = "presencial",
+                MeetingType = 2,
                 Address = "Julio cesar 1569",
                 IsActive = true,
                 Pathologies = patList1,
@@ -61,11 +60,20 @@ namespace MSP.BetterCalm.DataAccess.Test
         }
 
         [TestMethod]
-        public void GetPsychologist()
+        public void GetAllPsychologist()
         {
             CreateDataBase("GetPsychologistTestDB");
             int size = psychologistRepo.GetAll().ToList().Count;
             Assert.AreEqual(1, size);
+        }
+
+
+        [TestMethod]
+        public void GetPsychologistById()
+        {
+            CreateDataBase("GetPsychologistDB");
+            var getPsychologist = psychologistRepo.Get(psychologist.Id);
+            Assert.AreEqual(getPsychologist.Id, psychologist.Id);
         }
 
 
@@ -88,7 +96,8 @@ namespace MSP.BetterCalm.DataAccess.Test
             {
                 Id = id2,
                 Name = "Maria Ines",
-                MeetingType = "Online",
+                //MeetingType = "Online",
+                MeetingType = 1,
                 Address = "Av River 5544",
                 IsActive = true,
                 Pathologies = patList2,
@@ -115,8 +124,19 @@ namespace MSP.BetterCalm.DataAccess.Test
 
         [TestMethod]
         public void UpdatePsychologist()
-        { //ACA NO DEBERIA ACTUALIZAR ALGUN DATO DEL ADMIN??? 
-            CreateDataBase("UpdatePsychologistTestDB");
+        {
+            CreateDataBase("UpdatePsychologoTestDB");
+            var getPsycho = psychologistRepo.Get(psychologist.Id);
+            Assert.AreEqual(getPsycho.Name, psychologist.Name);
+
+            getPsycho.Address = "Feliciano Rodriguez 1225";
+            psychologistRepo.Update(getPsycho);
+            psychologistRepo.Save();
+
+            var getAdminVerifi = psychologistRepo.Get(getPsycho.Id);
+            Assert.AreEqual(getAdminVerifi.Id, getPsycho.Id);
+            Assert.AreEqual(getPsycho.Address, "Feliciano Rodriguez 1225");
+
             int size = psychologistRepo.GetAll().ToList().Count;
             psychologistRepo.Save();
             Assert.AreEqual(1, size);

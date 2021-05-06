@@ -1,11 +1,8 @@
-﻿using MSP.BetterCalm.DataAccess;
-using MSP.BetterCalm.Domain;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using System;
 using System.Linq;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MSP.BetterCalm.Domain;
 
 namespace MSP.BetterCalm.DataAccess.Test
 {
@@ -46,12 +43,21 @@ namespace MSP.BetterCalm.DataAccess.Test
         }
 
         [TestMethod]
-        public void GetAdministrator()
+        public void GetAllAdministrator()
         {
-            CreateDataBase("GetTestDB");
+            CreateDataBase("GetAdministratorDB");
             int size = adminRepo.GetAll().ToList().Count;
-            Assert.AreEqual(1, size);
+            Assert.AreEqual(2, size);
         }
+
+        [TestMethod]
+        public void GetAdministratorById()
+        {
+            CreateDataBase("GetAdministratorDB");
+            var getAdmin = adminRepo.Get(admin.Id);
+            Assert.AreEqual(getAdmin.Id, admin.Id);
+        }
+
 
 
         [TestMethod]
@@ -86,11 +92,23 @@ namespace MSP.BetterCalm.DataAccess.Test
 
         [TestMethod]
         public void UpdateAdministrator()
-        { //ACA NO DEBERIA ACTUALIZAR ALGUN DATO DEL ADMIN??? 
+        {
             CreateDataBase("UpdateAdministratorTestDB");
+            var getAdmin = adminRepo.Get(admin.Id);
+            Assert.AreEqual(getAdmin.Name, admin.Name);
+
+            getAdmin.Email = "masadurian@gmail.com";
+            adminRepo.Update(getAdmin);
+            adminRepo.Save();
+
+            var getAdminVerifi = adminRepo.Get(getAdmin.Id);
+            Assert.AreEqual(getAdminVerifi.Id, getAdmin.Id);
+            Assert.AreEqual(getAdmin.Email, "masadurian@gmail.com");
+
             int size = adminRepo.GetAll().ToList().Count;
             adminRepo.Save();
             Assert.AreEqual(1, size);
+
         }
     }
 

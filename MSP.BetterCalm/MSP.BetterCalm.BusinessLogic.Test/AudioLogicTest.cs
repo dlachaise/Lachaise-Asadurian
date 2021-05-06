@@ -1,14 +1,12 @@
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using MSP.BetterCalm.Domain;
-using MSP.BetterCalm.BusinessLogic;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
-using System.Linq;
+using MSP.BetterCalm.Domain;
 namespace MSP.BetterCalm.BusinessLogic.Test
 {
     [TestClass]
@@ -126,6 +124,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
 
             audioLogic.CreateAudio(audio);
             daMock.VerifyAll();
+            Assert.AreEqual(audio.Name, "Eres Mia");
 
         }
 
@@ -150,36 +149,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             Audio audio = null;
             daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(audio);
             var ret = audioLogic.Get(id);
-
+            Assert.IsFalse(ret.Equals(audio));
         }
-
-        /*      
-
-           [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
-           [TestMethod]
-           public void CreateAdministratorFailAlreadyExists()
-           {
-               Guid id = Guid.NewGuid();
-               var admin = new Administrator()
-               {
-                   Id = id,
-                   Name = "Dominique",
-                   Email = "domi@gmail.com",
-                   Password = "admin1234",
-                   IsActive = true
-               };
-
-               List<Administrator> list = new List<Administrator>();
-               daMock.Setup(x => x.Add(admin)).Verifiable();
-               daMock.Setup(x => x.Save());
-               daMock.Setup(x => x.GetAll()).Returns(list);
-               administratorLogic.Create(admin);
-               list.Add(admin);
-               daMock.Setup(x => x.GetAll()).Returns(list);
-               administratorLogic.Create(admin);
-
-           }
-   */
     }
 
 }

@@ -1,14 +1,12 @@
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using MSP.BetterCalm.Domain;
-using MSP.BetterCalm.BusinessLogic;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
-using System.Linq;
+using MSP.BetterCalm.Domain;
 namespace MSP.BetterCalm.BusinessLogic.Test
 {
     [TestClass]
@@ -71,6 +69,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             Pathology pathology = null;
             daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(pathology);
             var ret = pathologyLogic.Get(id);
+            Assert.IsFalse(ret.Equals(pathology));
 
         }
     }
