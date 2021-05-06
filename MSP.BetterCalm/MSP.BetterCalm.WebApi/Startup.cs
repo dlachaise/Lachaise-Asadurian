@@ -26,9 +26,14 @@ namespace MSP.BetterCalm.WebApi
 
             services.AddControllers();
 
-            services.AddDbContext<DbContext, DataContext>(
-               o => o.UseInMemoryDatabase("BetterCalmDBIM")
-           );
+            /*  services.AddDbContext<DbContext, DataContext>(
+                 o => o.UseInMemoryDatabase("BetterCalmDBIM")
+             );
+*/
+
+            services.AddDbContext<DbContext, DataContext>(o =>
+                    o.UseSqlServer(
+                        Configuration.GetConnectionString("MSPBetterCalmDB")));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IAdministratorLogic, AdministratorLogic>();
@@ -38,9 +43,17 @@ namespace MSP.BetterCalm.WebApi
             services.AddScoped<ICategoryLogic, CategoryLogic>();
             services.AddScoped<IConsultationLogic, ConsultationLogic>();
 
-
-            // services.AddScoped<IAudioLogic, AudioLogic>();
-            // services.AddScoped<IPlaylistLogic, PlaylistLogic>();
+            services.AddCors(
+               options =>
+               {
+                   options.AddPolicy(
+           "CorsPolicy",
+           builder => builder
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+       );
+               });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -32,7 +32,7 @@ namespace MSP.BetterCalm.WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            Administrator admin = administratorLogic.Get(id);
+            Administrator admin = this.administratorLogic.Get(id);
 
             if (admin != null)
             {
@@ -84,6 +84,13 @@ namespace MSP.BetterCalm.WebApi.Controllers
                 return NotFound(e.Message);
             }
 
+
+        }
+
+        [HttpPost]
+        public IActionResult PostLogin([FromBody] AdministratorLoginDTO admin)
+        {
+            string token = Guid.NewGuid().ToString();
 
         }
 
