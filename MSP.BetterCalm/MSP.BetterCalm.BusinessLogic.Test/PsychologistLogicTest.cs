@@ -225,16 +225,16 @@ namespace MSP.BetterCalm.BusinessLogic.Test
         {
             Psychologist psychoEmpty = new Psychologist();
             List<Psychologist> list = new List<Psychologist>();
-            //list.Add(psyco1);
+            
 
             Guid id = patList1.First().Id;
-            IEnumerable<Psychologist> psychoToReturn = new List<Psychologist>(); //{ this.psyco1 };
+            IEnumerable<Psychologist> psychoToReturn = new List<Psychologist>(); 
             Mock.Setup(x => x.GetByPathology(id)).Returns(psychoToReturn);
 
-            var psychoToReturnAvailable = new List<Psychologist>();// { this.psyco1 };
+            var psychoToReturnAvailable = new List<Psychologist>();
             Mock.Setup(x => x.GetPsychoAvailable(psychoToReturn, DateTime.Now.AddDays(+1))).Returns(psychoToReturnAvailable);
 
-            Mock.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(psychoEmpty);//this.psyco1);
+            Mock.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(psychoEmpty);
 
             var ret = psychologistLogic.OlderPsycho(psychoToReturnAvailable);
             daMock.VerifyAll();

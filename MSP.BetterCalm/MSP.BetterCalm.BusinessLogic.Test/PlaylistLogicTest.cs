@@ -136,19 +136,6 @@ namespace MSP.BetterCalm.BusinessLogic.Test
 
         }
 
-        /*  [ExpectedException(typeof(Exception), "The Audio doesn't exists")]
-          [TestMethod]
-          public void RemoveAudioFail()
-          {
-              Audio audioNull = null;
-
-              daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(audioNull);
-              daMock.Setup(m => m.Remove(audioNull));
-              daMock.Setup(m => m.Save());
-
-              playlistLogic.Delete(Guid.NewGuid());
-          }
-  */
     }
 }
 

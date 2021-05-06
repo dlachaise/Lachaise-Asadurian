@@ -56,7 +56,7 @@ namespace MSP.BetterCalm.BusinessLogic
         {
             return this.iPlayR.GetAll();
         }
-        //PROBAR
+   
         public IEnumerable<Playlist> GetByCategory(Guid categoryId)
         {
             Category category = iCatR.Get(categoryId);

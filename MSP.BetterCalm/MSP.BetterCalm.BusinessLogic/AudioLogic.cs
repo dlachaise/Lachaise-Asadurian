@@ -63,7 +63,11 @@ namespace MSP.BetterCalm.BusinessLogic
             iaudR.Save();
             return audio;
         }
+<<<<<<< HEAD
         //PROBAR ESTAS DOS
+=======
+
+>>>>>>> 1923155ef33a31c3bae547db0e701e901a7648f8
         public IEnumerable<Audio> GetByPlaylist(Guid playlistId)
         {
             Playlist playlist = iplayR.Get(playlistId);
@@ -83,6 +87,5 @@ namespace MSP.BetterCalm.BusinessLogic
             }
             return null;
         }
-
     }
 }
