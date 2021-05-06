@@ -1,7 +1,6 @@
 
 using System;
 using System.Collections.Generic;
-using MSP.BetterCalm.BusinessLogic.Exceptions;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MSP.BetterCalm.BusinessLogic.Exceptions;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
 using MSP.BetterCalm.Domain;
