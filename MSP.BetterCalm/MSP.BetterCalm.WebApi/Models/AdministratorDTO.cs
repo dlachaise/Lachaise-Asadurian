@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using MSP.BetterCalm.Domain;
-using MSP.BetterCalm.WebApi.Models;
-using System.Threading.Tasks;
 namespace MSP.BetterCalm.WebApi.Models
 {
     public class AdministratorDTO

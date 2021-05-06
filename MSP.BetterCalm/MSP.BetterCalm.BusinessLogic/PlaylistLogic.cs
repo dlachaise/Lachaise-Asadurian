@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using MSP.BetterCalm.Domain;
-using MSP.BetterCalm.DataAccess;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
-using System.Linq;
+using MSP.BetterCalm.Domain;
 
 namespace MSP.BetterCalm.BusinessLogic
 {
@@ -41,7 +39,7 @@ namespace MSP.BetterCalm.BusinessLogic
         public Playlist Get(Guid id)
         {
             Playlist playL = iPlayR.Get(id);
-            if (playL != null )
+            if (playL != null)
             {
                 return playL;
             }

@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using MSP.BetterCalm.Domain;
-using MSP.BetterCalm.DataAccess;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
-using System.Linq;
+using MSP.BetterCalm.Domain;
 
 namespace MSP.BetterCalm.BusinessLogic
 {
     public class ConsultationLogic : IConsultationLogic
     {
 
-        private IPsychologistLogic psychLogic; //probandooooooooooooooooo
+        private IPsychologistLogic psychLogic;
         private IRepository<Consultation> iConsultationR;
         private ConsultationLogic consultationLogic;
         private IConsultationLogic iConsultationlogic;
@@ -26,6 +24,13 @@ namespace MSP.BetterCalm.BusinessLogic
             this.psychLogic = iPsychoLogic;
         }
 
+        public String CreateMeetingLink()
+        {
+            var meetingId = Guid.NewGuid();
+
+            return "https://bettercalm.com.uy/meeting_id/" + meetingId;
+
+        }
 
         public void CreateConsultation(Consultation consult, Guid pathologyId)
         {
@@ -38,16 +43,29 @@ namespace MSP.BetterCalm.BusinessLogic
             {
                 var listPsychologistAvailable = psychLogic.GetPsychoAvailable(listPsychologist, consult.Date);
 
-                if(listPsychologistAvailable == null){
-                     throw new Exception("There are no psychologists available for this date");
-                }else {
-                    var psychoForConsultation = psychLogic.OlderPsycho(listPsychologistAvailable);
-                     consult.Psychologist = psychoForConsultation;
+                if (listPsychologistAvailable == null)
+                {
+                    throw new Exception("There are no psychologists available for this date");
                 }
-                
+                else
+                {
+                    var psychoForConsultation = psychLogic.OlderPsycho(listPsychologistAvailable);
+                    consult.Psychologist = psychoForConsultation;
+                    if (consult.Psychologist.MeetingType == 1)
+                    {
+                        consult.MeetingType = psychoForConsultation.MeetingType;
+                        consult.MeetingAdress = psychoForConsultation.Address;
+                    }
+                    else
+                    {
+                        consult.MeetingType = psychoForConsultation.MeetingType;
+                        consult.MeetingAdress = CreateMeetingLink();
+                    }
+                }
+
             }
-                iConsultationR.Create(consult);
-                iConsultationR.Save();
+            iConsultationR.Create(consult);
+            iConsultationR.Save();
         }
 
         public Consultation Get(Guid id)
@@ -68,30 +86,5 @@ namespace MSP.BetterCalm.BusinessLogic
             return this.iConsultationR.GetAll();
         }
 
-
-
-
-
-
-        /*public void CreateCategory(Playlist playlistToAdd){
-                iCategoryR.Add(playlistToAdd);
-                iCategoryR.Save();
-           }
-            public void Delete(Guid id)
-            {
-                Playlist playL = iCategoryR.Get(id);
-
-                if (playL != null)
-                {
-                   // playL.IsActive= false;
-                    iCategoryR.Remove(playL);
-                    iCategoryR.Save();
-                }
-                else
-                {
-                    throw new Exception("Playlist does not exist");
-                }
-
-            }*/
     }
 }

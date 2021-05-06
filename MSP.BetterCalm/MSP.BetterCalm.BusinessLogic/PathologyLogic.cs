@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using MSP.BetterCalm.Domain;
-using MSP.BetterCalm.DataAccess;
-using MSP.BetterCalm.DataAccess.Interface;
 using MSP.BetterCalm.BusinessLogic.Interface;
-using System.Linq;
+using MSP.BetterCalm.DataAccess.Interface;
+using MSP.BetterCalm.Domain;
 
 namespace MSP.BetterCalm.BusinessLogic
 {

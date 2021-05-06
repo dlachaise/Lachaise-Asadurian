@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using MSP.BetterCalm.Domain;
-using MSP.BetterCalm.DataAccess;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
-using System.Linq;
+using MSP.BetterCalm.Domain;
 //using System.Collections.IEnumerable;
 
 

@@ -1,14 +1,12 @@
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using MSP.BetterCalm.Domain;
-using MSP.BetterCalm.BusinessLogic;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
-using System.Linq;
+using MSP.BetterCalm.Domain;
 namespace MSP.BetterCalm.BusinessLogic.Test
 {
     [TestClass]
@@ -45,7 +43,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             {
                 Id = Guid.NewGuid(),
                 Name = "Joaquin Perez",
-                MeetingType = "presencial",
+                MeetingType = 2,
                 Address = "Julio cesar 1569",
                 IsActive = true,
                 Pathologies = patList1,
@@ -63,8 +61,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             {
 
                 Id = id,
-                MeetingType = 1,
-                MeetingLink = "www.zoom.com/consulta1",
+                MeetingType = 2,
+                MeetingAdress = "https://bettercalm.com.uy/meeting_id/c03bae17-326a-463a-8374-5da80a1e4a43",
                 Date = new DateTime(),
                 UserCompleteName = "Diego Asadurian",
                 UserBirthDate = "11/11/1994",
@@ -83,6 +81,46 @@ namespace MSP.BetterCalm.BusinessLogic.Test
         }
 
         [TestMethod]
+        public void GetConsultationByIdOk()
+        {
+            Guid id = Guid.NewGuid();
+            var consultation = new Consultation()
+            {
+
+                Id = id,
+                MeetingType = 2,
+                MeetingAdress = "https://bettercalm.com.uy/meeting_id/c03bae17-326a-463a-8374-5da80a1e4a43",
+                Date = new DateTime(),
+                UserCompleteName = "Matin Caarizo",
+                UserBirthDate = "01/05/1994",
+                UserCel = "099047785",
+                UserEmail = "martin@gmail.com",
+                Psychologist = psycho
+
+            };
+
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(consultation);
+
+            var ret = consultationLogic.Get(id);
+            daMock.VerifyAll();
+            Assert.IsTrue(ret.Equals(consultation));
+
+        }
+
+        [TestMethod]
+        public void GetAllTestEmptyList()
+        {
+
+            List<Consultation> list = new List<Consultation>();
+            daMock.Setup(x => x.GetAll()).Returns(list);
+
+            IEnumerable<Consultation> ret = consultationLogic.GetAll();
+            daMock.VerifyAll();
+            Assert.IsTrue(ret.SequenceEqual(list));
+        }
+
+
+        [TestMethod]
         public void CreateConsultationOk()
         {
             var pathology = new Pathology()
@@ -94,8 +132,6 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             var consult = new Consultation()
             {
                 Id = id,
-                MeetingType = 1,
-                MeetingLink = "www.esporahi.com",
                 Date = DateTime.Now,
                 UserCompleteName = "Juan manuel",
                 UserBirthDate = "11/11/1994",
@@ -107,12 +143,12 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             var psychoToReturnAvailable = new List<Psychologist> { this.psycho };
             daMock.Setup(x => x.Create(consult)).Verifiable();
             daMock.Setup(x => x.Save());
-           
+
             MockPsycho.Setup(x => x.GetByPathology(pathology.Id)).Returns(psychoToReturn);
             MockPsycho.Setup(x => x.GetPsychoAvailable(psychoToReturn, consult.Date)).Returns(psychoToReturnAvailable);
             MockPsycho.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(this.psycho);
 
-            consultationLogic.CreateConsultation(consult, pathology.Id); 
+            consultationLogic.CreateConsultation(consult, pathology.Id);
             daMock.VerifyAll();
             Assert.AreEqual(consult.Psychologist.Id, psycho.Id);
         }
@@ -122,7 +158,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
         [TestMethod]
         public void NoPsychologistAvailableToThisPathology()
         {
-        var pathology = new Pathology()
+            var pathology = new Pathology()
             {
                 Id = Guid.NewGuid(),
                 Name = "Mal Humor"
@@ -131,8 +167,6 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             var consult = new Consultation()
             {
                 Id = id,
-                MeetingType = 1,
-                MeetingLink = "www.meetGoogle.com",
                 Date = DateTime.Now,
                 UserCompleteName = "Diego Lopez",
                 UserBirthDate = "01/10/1994",
@@ -140,9 +174,9 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 UserEmail = "maria@gmail.com",
                 Psychologist = psycho
             };
-            
-             var psychoToReturn = new List<Psychologist> { this.psycho };
-             List<Psychologist> psychoToReturnAvailable = null;
+
+            var psychoToReturn = new List<Psychologist> { this.psycho };
+            List<Psychologist> psychoToReturnAvailable = null;
             daMock.Setup(x => x.Create(consult)).Verifiable();
             daMock.Setup(x => x.Save());
 
@@ -150,17 +184,17 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             MockPsycho.Setup(x => x.GetPsychoAvailable(psychoToReturn, consult.Date)).Returns(psychoToReturnAvailable);
             MockPsycho.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(this.psycho);
 
-            consultationLogic.CreateConsultation(consult, pathology.Id); 
+            consultationLogic.CreateConsultation(consult, pathology.Id);
             daMock.VerifyAll();
             Assert.AreNotEqual(consult.Psychologist.Id, psycho.Id);
         }
 
 
-         [ExpectedException(typeof(Exception), "There are no psychologists available for this date")]
+        [ExpectedException(typeof(Exception), "There are no psychologists available for this date")]
         [TestMethod]
-          public void NoPsychologistAvailableForDate()
+        public void NoPsychologistAvailableForDate()
         {
-        var pathology = new Pathology()
+            var pathology = new Pathology()
             {
                 Id = Guid.NewGuid(),
                 Name = "Estres"
@@ -169,8 +203,6 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             var consult = new Consultation()
             {
                 Id = id,
-                MeetingType = 1,
-                MeetingLink = "www.teams.com",
                 Date = DateTime.Now,
                 UserCompleteName = "Mariana Haedo",
                 UserBirthDate = "01/10/1994",
@@ -182,16 +214,30 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             var psychoToReturnAvailable = new List<Psychologist> { this.psycho };
             daMock.Setup(x => x.Create(consult)).Verifiable();
             daMock.Setup(x => x.Save());
-            
+
             MockPsycho.Setup(x => x.GetByPathology(pathology.Id)).Returns(psychoToReturn);
             MockPsycho.Setup(x => x.GetPsychoAvailable(psychoToReturn, consult.Date)).Returns(psychoToReturnAvailable);
             MockPsycho.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(this.psycho);
 
-            consultationLogic.CreateConsultation(consult, pathology.Id); 
+            consultationLogic.CreateConsultation(consult, pathology.Id);
             daMock.VerifyAll();
             Assert.AreNotEqual(consult.Psychologist.Id, psycho.Id);
         }
 
+
+
+        [ExpectedException(typeof(Exception), "The consultation doesn't exists")]
+        [TestMethod]
+        public void GetConsultationByIdFail()
+        {
+            Guid id = Guid.NewGuid();
+            Consultation consult = null;
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(consult);
+            var ret = consultationLogic.Get(id);
+            Assert.IsFalse(ret.Equals(consult));
+        }
+
     }
+
 }
 

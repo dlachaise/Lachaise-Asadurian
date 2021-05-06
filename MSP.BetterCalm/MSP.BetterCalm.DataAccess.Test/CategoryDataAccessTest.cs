@@ -1,11 +1,9 @@
-﻿using MSP.BetterCalm.DataAccess;
-using MSP.BetterCalm.Domain;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MSP.BetterCalm.Domain;
 
 namespace MSP.BetterCalm.DataAccess.Test
 {
@@ -45,11 +43,19 @@ namespace MSP.BetterCalm.DataAccess.Test
         }
 
         [TestMethod]
-        public void GetCategory()
+        public void GetAllCategory()
         {
             CreateDataBase("GetCategoryTestDB");
             int size = categoryRepo.GetAll().ToList().Count;
             Assert.AreEqual(1, size);
+        }
+
+        [TestMethod]
+        public void GetCategoryById()
+        {
+            CreateDataBase("GetCategoryDB");
+            var getCategory = categoryRepo.Get(category.Id);
+            Assert.AreEqual(getCategory.Id, category.Id);
         }
 
     }

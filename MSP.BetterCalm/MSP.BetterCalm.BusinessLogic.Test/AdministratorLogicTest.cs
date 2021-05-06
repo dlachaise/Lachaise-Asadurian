@@ -1,14 +1,12 @@
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using MSP.BetterCalm.Domain;
-using MSP.BetterCalm.BusinessLogic;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
-using System.Linq;
+using MSP.BetterCalm.Domain;
 namespace MSP.BetterCalm.BusinessLogic.Test
 {
     [TestClass]
@@ -87,6 +85,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             Administrator admin = null;
             daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
             var ret = administratorLogic.Get(id);
+            Assert.IsFalse(ret.Equals(admin));
 
         }
 
@@ -117,6 +116,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             administratorLogic.Update(id, updatedAdmin);
 
             daMock.VerifyAll();
+            Assert.AreEqual(updatedAdmin.Name, "Dominique Lachaise");
 
         }
         [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
@@ -138,6 +138,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             daMock.Setup(x => x.Update(updatedAdmin));
             daMock.Setup(x => x.Save());
             administratorLogic.Update(id, updatedAdmin);
+            Assert.AreNotEqual(adm,updatedAdmin);
+
         }
 
 
@@ -159,10 +161,11 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             daMock.Setup(x => x.GetAll()).Returns(list);
             administratorLogic.Create(admin);
             daMock.VerifyAll();
+            Assert.AreEqual(admin.Name,"Dominique");
 
         }
 
-        [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
+        [ExpectedException(typeof(Exception), "The administrator exists")]
         [TestMethod]
         public void CreateAdministratorFailAlreadyExists()
         {
@@ -185,6 +188,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             daMock.Setup(x => x.GetAll()).Returns(list);
             administratorLogic.Create(admin);
 
+           
+
         }
 
         [TestMethod]
@@ -205,6 +210,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
 
             administratorLogic.Delete(id);
             daMock.VerifyAll();
+
         }
 
         [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
