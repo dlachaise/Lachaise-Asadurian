@@ -1,12 +1,14 @@
 
 using System;
 using System.Collections.Generic;
+using MSP.BetterCalm.BusinessLogic.Exceptions;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
 using MSP.BetterCalm.Domain;
+
 namespace MSP.BetterCalm.BusinessLogic.Test
 {
     [TestClass]
@@ -78,6 +80,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
 
         }
         [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
+        //[ExpectedException(typeof(BusinessLogicExceptions)]
         [TestMethod]
         public void GetAdministratorByIdFail()
         {
@@ -165,6 +168,131 @@ namespace MSP.BetterCalm.BusinessLogic.Test
 
         }
 
+        [ExpectedException(typeof(Exception), "Invalid email format")]
+        [TestMethod]
+        public void CreateAdministratorEmailFail()
+        {
+            Guid id = Guid.NewGuid();
+            var admin = new Administrator()
+            {
+                Id = id,
+                Name = "Dominique",
+                Email = "domigil.com",
+                Password = "admin1234",
+                IsActive = true
+            };
+            daMock.Setup(x => x.Create(admin)).Verifiable();
+            daMock.Setup(x => x.Save());
+            List<Administrator> list = new List<Administrator>();
+            daMock.Setup(x => x.GetAll()).Returns(list);
+            administratorLogic.Create(admin);
+            daMock.VerifyAll();
+
+            var ret = administratorLogic.Get(id);
+            Assert.IsFalse(ret.Equals(admin));
+
+        }
+
+        [ExpectedException(typeof(Exception), "Invalid password")]
+        [TestMethod]
+        public void CreateAdministratorInvalidPass()
+        {
+            Guid id = Guid.NewGuid();
+            var admin = new Administrator()
+            {
+                Id = id,
+                Name = "Dominique",
+                Email = "domi@gmail.com",
+                Password = "adcs",
+                IsActive = true
+            };
+            daMock.Setup(x => x.Create(admin)).Verifiable();
+            daMock.Setup(x => x.Save());
+            List<Administrator> list = new List<Administrator>();
+            daMock.Setup(x => x.GetAll()).Returns(list);
+            administratorLogic.Create(admin);
+            daMock.VerifyAll();
+
+            var ret = administratorLogic.Get(id);
+            Assert.IsFalse(ret.Equals(admin));
+
+        }
+
+        [ExpectedException(typeof(Exception), "You can enter empty password")]
+        [TestMethod]
+        public void CreateAdministratorPassEmpty()
+        {
+            Guid id = Guid.NewGuid();
+            var admin = new Administrator()
+            {
+                Id = id,
+                Name = "Dominique",
+                Email = "domi@gmail.com",
+                Password = "",
+                IsActive = true
+            };
+            daMock.Setup(x => x.Create(admin)).Verifiable();
+            daMock.Setup(x => x.Save());
+            List<Administrator> list = new List<Administrator>();
+            daMock.Setup(x => x.GetAll()).Returns(list);
+            administratorLogic.Create(admin);
+            daMock.VerifyAll();
+
+            var ret = administratorLogic.Get(id);
+            Assert.IsFalse(ret.Equals(admin));
+
+        }
+
+        [ExpectedException(typeof(Exception), "You can enter empty email")]
+        [TestMethod]
+        public void CreateAdministratorEmailEmpty()
+        {
+            Guid id = Guid.NewGuid();
+            var admin = new Administrator()
+            {
+                Id = id,
+                Name = "Dominique",
+                Email = "",
+                Password = "adda4343",
+                IsActive = true
+            };
+            daMock.Setup(x => x.Create(admin)).Verifiable();
+            daMock.Setup(x => x.Save());
+            List<Administrator> list = new List<Administrator>();
+            daMock.Setup(x => x.GetAll()).Returns(list);
+            administratorLogic.Create(admin);
+            daMock.VerifyAll();
+
+            var ret = administratorLogic.Get(id);
+            Assert.IsFalse(ret.Equals(admin));
+
+        }
+
+        [ExpectedException(typeof(Exception), "You can enter empty email")]
+        [TestMethod]
+        public void CreateAdministratorEmailAndPassEmpty()
+        {
+            Guid id = Guid.NewGuid();
+            var admin = new Administrator()
+            {
+                Id = id,
+                Name = "Dominique",
+                Email = "",
+                Password = "",
+                IsActive = true
+            };
+            daMock.Setup(x => x.Create(admin)).Verifiable();
+            daMock.Setup(x => x.Save());
+            List<Administrator> list = new List<Administrator>();
+            daMock.Setup(x => x.GetAll()).Returns(list);
+            administratorLogic.Create(admin);
+            daMock.VerifyAll();
+
+            var ret = administratorLogic.Get(id);
+            Assert.IsFalse(ret.Equals(admin));
+
+        }
+
         [ExpectedException(typeof(Exception), "The administrator exists")]
         [TestMethod]
         public void CreateAdministratorFailAlreadyExists()
@@ -188,7 +316,13 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             daMock.Setup(x => x.GetAll()).Returns(list);
             administratorLogic.Create(admin);
 
-           
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(admin);
+
+            var ret = administratorLogic.Get(id);
+            daMock.VerifyAll();
+            Assert.IsTrue(ret.Equals(admin));
+
+
 
         }
 
@@ -210,13 +344,14 @@ namespace MSP.BetterCalm.BusinessLogic.Test
 
             administratorLogic.Delete(id);
             daMock.VerifyAll();
-
+                 
         }
 
         [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
         [TestMethod]
         public void RemoveAdministratorFail()
         {
+            Guid id = Guid.NewGuid();
             Administrator adminNull = null;
 
             daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(adminNull);
@@ -224,6 +359,9 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             daMock.Setup(m => m.Save());
 
             administratorLogic.Delete(Guid.NewGuid());
+
+            var ret = administratorLogic.Get(id);
+            Assert.IsFalse(ret.Equals(adminNull));
         }
 
 

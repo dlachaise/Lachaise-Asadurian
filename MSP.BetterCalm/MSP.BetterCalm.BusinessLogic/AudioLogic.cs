@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MSP.BetterCalm.BusinessLogic.Exceptions;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
 using MSP.BetterCalm.Domain;
@@ -57,12 +58,6 @@ namespace MSP.BetterCalm.BusinessLogic
             return this.iaudR.GetAll();
         }
 
-        //        public IEnumerable<Audio> GetByCategory(Guid categoryId){
-        //         return iaudR.GetByCategory(categoryId);
-        //     }
-
-        //    public IEnumerable<Audio> GetByPlaylist(Guid idPlaylist){
-        //        return iaudR.GetByPlaylist(idPlaylist);
     }
 
 }

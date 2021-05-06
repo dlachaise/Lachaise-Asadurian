@@ -348,13 +348,15 @@ namespace MSP.BetterCalm.BusinessLogic.Test
         [TestMethod]
         public void RemovePsychologistFail()
         {
-            Psychologist adminNull = null;
+            Guid id = Guid.NewGuid();
+            Psychologist psychoNull = null;
 
-            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(adminNull);
-            daMock.Setup(m => m.Delete(adminNull));
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(psychoNull);
+            daMock.Setup(m => m.Delete(psychoNull));
             daMock.Setup(m => m.Save());
-
             psychologistLogic.Delete(Guid.NewGuid());
+            var ret = psychologistLogic.Get(id);
+            Assert.IsFalse(ret.Equals(psychoNull));
         }
 
 
@@ -381,6 +383,10 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             list.Add(psycoToCreate);
             daMock.Setup(x => x.GetAll()).Returns(list);
             psychologistLogic.Create(psycoToCreate);
+
+            var ret = psychologistLogic.Get(psycoToCreate.Id);
+            daMock.VerifyAll();
+            Assert.IsTrue(ret.Equals(psycoToCreate));
 
         }
 
