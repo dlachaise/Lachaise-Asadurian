@@ -4,17 +4,10 @@ using MSP.BetterCalm.Domain;
 
 namespace MSP.BetterCalm.BusinessLogic.Interface
 {
-    public interface IPlaylistLogic
+    public interface IPathologyLogic
     {
-        IEnumerable<Playlist> GetAll();
-
-        /*IEnumerable<Playlist> GetByCategory(Guid idCategory);
-        IEnumerable<Playlist> GetByPlaylist(Guid idPlaylist);*/
-
-
-        Playlist Get(Guid id);
-        void Delete(Guid id);
-        //void CreateAudio(Playlist playL);
+            IEnumerable<Pathology> GetAll();
+            Pathology Get(Guid id);
 
 
     }

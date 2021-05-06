@@ -4,14 +4,16 @@ using MSP.BetterCalm.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MSP.BetterCalm.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210506162218_NewSessionTable")]
+    partial class NewSessionTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -176,7 +178,12 @@ namespace MSP.BetterCalm.DataAccess.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("PsychologistId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PsychologistId");
 
                     b.ToTable("Pathology");
                 });
@@ -246,21 +253,6 @@ namespace MSP.BetterCalm.DataAccess.Migrations
                     b.ToTable("Sessions");
                 });
 
-            modelBuilder.Entity("PathologyPsychologist", b =>
-                {
-                    b.Property<Guid>("PathologiesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PsychologistId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("PathologiesId", "PsychologistId");
-
-                    b.HasIndex("PsychologistId");
-
-                    b.ToTable("PathologyPsychologist");
-                });
-
             modelBuilder.Entity("AudioCategory", b =>
                 {
                     b.HasOne("MSP.BetterCalm.Domain.Audio", null)
@@ -315,6 +307,13 @@ namespace MSP.BetterCalm.DataAccess.Migrations
                     b.Navigation("Psychologist");
                 });
 
+            modelBuilder.Entity("MSP.BetterCalm.Domain.Pathology", b =>
+                {
+                    b.HasOne("MSP.BetterCalm.Domain.Psychologist", null)
+                        .WithMany("Pathologies")
+                        .HasForeignKey("PsychologistId");
+                });
+
             modelBuilder.Entity("MSP.BetterCalm.Domain.Session", b =>
                 {
                     b.HasOne("MSP.BetterCalm.Domain.Administrator", "Administrator")
@@ -324,19 +323,9 @@ namespace MSP.BetterCalm.DataAccess.Migrations
                     b.Navigation("Administrator");
                 });
 
-            modelBuilder.Entity("PathologyPsychologist", b =>
+            modelBuilder.Entity("MSP.BetterCalm.Domain.Psychologist", b =>
                 {
-                    b.HasOne("MSP.BetterCalm.Domain.Pathology", null)
-                        .WithMany()
-                        .HasForeignKey("PathologiesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MSP.BetterCalm.Domain.Psychologist", null)
-                        .WithMany()
-                        .HasForeignKey("PsychologistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Pathologies");
                 });
 #pragma warning restore 612, 618
         }

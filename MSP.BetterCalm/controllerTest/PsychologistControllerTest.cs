@@ -15,64 +15,58 @@ using MSP.BetterCalm.WebApi.Models;
 namespace MSP.BetterCalm.WebApi.Test
 {
     [TestClass]
-    public class AdministratorControllerTest
+    public class PsychologistControllerTest
     {
 
-        private Mock<IAdministratorLogic> Mock;
-
+        private Mock<IPsychologistLogic> Mock;
         private Mock<ISessionLogic> SessionMock;
-        private AdministratorController controller;
-        IEnumerable<Administrator> adminList;
+        private PsychologistController controller;
+        IEnumerable<Psychologist> psychoList;
 
-        AdministratorDTO adminDTO1;
-        Administrator admin1;
+        PsychologistDTO psychoDTO1;
+        Psychologist psycho1;
         Guid token;
-        Session session;
 
         [TestInitialize]
         public void Setup()
         {
 
-            Mock = new Mock<IAdministratorLogic>(MockBehavior.Strict);
-            controller = new AdministratorController(Mock.Object);
+            Mock = new Mock<IPsychologistLogic>(MockBehavior.Strict);
             SessionMock = new Mock<SessionLogic>(MockBehavior, Strict);
-            session = new Session
-            {
-                token = Guid.NewGuid(),
-            };
-
-            admin1 = new Administrator
+            controller = new PsychologistController(Mock.Object);
+            psycho1 = new Psychologist
             {
                 Id = Guid.NewGuid(),
                 Name = "Alvaro Perez",
-                Email = "Aalvaro@gmail.com",
-                Password = "alvaro123"
-            };
-            adminDTO1 = new AdministratorDTO(admin1);
+                IsActive = true,
 
-            adminList = new List<Administrator>{
-                admin1,
-                    new Administrator{
+            };
+            psychoDTO1 = new PsychologistDTO(psycho1);
+
+            psychoList = new List<Psychologist>{
+                psycho1,
+                    new Psychologist{
                     Id = Guid.NewGuid(),
-                    Name = "Julia Terra"
+                Name = "Alvarito",
+                IsActive = true,
                 },
             };
         }
 
         [TestMethod]
-        public void GetAdministratorOK()
+        public void GetPsychologistOK()
         {
 
-            Mock.Setup(administratorLogic => administratorLogic.GetAll()).Returns(adminList);
+            Mock.Setup(psychologistLogic => psychologistLogic.GetAll()).Returns(psychoList);
 
             var result = controller.Get();
             var OkResult = result as OkObjectResult;
-            var controllerAdmins = OkResult.Value as IEnumerable<AdministratorDTO>; ;
+            var controllerAdmins = OkResult.Value as IEnumerable<PsychologistDTO>; ;
             var statusCode = OkResult.StatusCode;
 
             Mock.VerifyAll();
 
-            Assert.IsTrue(adminList.Select(admin => new AdministratorDTO(admin)).SequenceEqual(controllerAdmins));
+            Assert.IsTrue(psychoList.Select(psycho => new PsychologistDTO(psycho)).SequenceEqual(controllerAdmins));
             Assert.AreEqual(200, statusCode);
 
 
@@ -83,16 +77,16 @@ namespace MSP.BetterCalm.WebApi.Test
         public void GetByIdOK()
         {
 
-            Mock.Setup(administratorLogic => administratorLogic.Get(It.IsAny<Guid>())).Returns(admin1);
+            Mock.Setup(psychologistLogic => psychologistLogic.Get(It.IsAny<Guid>())).Returns(psycho1);
 
             var result = controller.Get(It.IsAny<Guid>());
             var okResult = result as OkObjectResult;
-            var controllerAdmin = okResult.Value as AdministratorDTO;
+            var controllerAdmin = okResult.Value as PsychologistDTO;
             var statusCode = okResult.StatusCode;
 
             Mock.VerifyAll();
             Assert.AreEqual(200, statusCode);
-            Assert.IsTrue(new AdministratorDTO(admin1).Equals(controllerAdmin));
+            Assert.IsTrue(new PsychologistDTO(psycho1).Equals(controllerAdmin));
         }
 
         [TestMethod]
@@ -100,9 +94,9 @@ namespace MSP.BetterCalm.WebApi.Test
         {
 
 
-            Administrator admin = null;
+            Psychologist psycho = null;
 
-            Mock.Setup(adminLogic => adminLogic.Get(It.IsAny<Guid>())).Returns(admin);
+            Mock.Setup(psychoLogic => psychoLogic.Get(It.IsAny<Guid>())).Returns(psycho);
 
             var result = controller.Get(It.IsAny<Guid>());
             var okResult = result as NotFoundObjectResult;
@@ -115,29 +109,29 @@ namespace MSP.BetterCalm.WebApi.Test
 
 
         [TestMethod]
-        public void PostAdministratorOK()
+        public void PostPsychologistOK()
         {
-            Mock.Setup(adminLogic => adminLogic.Create(It.IsAny<Administrator>())).Returns(admin1);
+            Mock.Setup(psychoLogic => psychoLogic.Create(It.IsAny<Psychologist>())).Returns(psycho1);
 
-            var result = controller.Post(adminDTO1);
+            var result = controller.Post(psychoDTO1);
             var okResult = result as OkObjectResult;
-            var adminAdded = okResult.Value as AdministratorDTO;
+            var psychoAdded = okResult.Value as PsychologistDTO;
 
             Mock.VerifyAll();
 
-            Assert.IsTrue(adminAdded.Equals(adminDTO1));
+            Assert.IsTrue(psychoAdded.Equals(psychoDTO1));
 
         }
 
 
         [TestMethod]
-        public void PutAdminNotExist()
+        public void PutTouristSpotNotExist()
         {
 
 
-            Mock.Setup(touristSpotlogic => touristSpotlogic.Update(It.IsAny<Guid>(), It.IsAny<Administrator>())).Throws(new Exception());
+            Mock.Setup(touristSpotlogic => touristSpotlogic.Update(It.IsAny<Guid>(), It.IsAny<Psychologist>())).Throws(new Exception());
 
-            var result = controller.Put(admin1.Id, adminDTO1);
+            var result = controller.Put(psycho1.Id, psychoDTO1);
 
             var okResult = result as NotFoundObjectResult;
 
@@ -149,7 +143,7 @@ namespace MSP.BetterCalm.WebApi.Test
         [TestMethod]
         public void DeleteOK()
         {
-            Mock.Setup(adminLogic => adminLogic.Delete(It.IsAny<Guid>())).Verifiable();
+            Mock.Setup(psychoLogic => psychoLogic.Delete(It.IsAny<Guid>())).Verifiable();
 
             var result = controller.Delete(Guid.NewGuid());
             var okResult = result as OkObjectResult;
@@ -162,7 +156,7 @@ namespace MSP.BetterCalm.WebApi.Test
         {
 
 
-            Mock.Setup(admLogic => admLogic.Delete(It.IsAny<Guid>())).Throws(new Exception());
+            Mock.Setup(psychoLogic => psychoLogic.Delete(It.IsAny<Guid>())).Throws(new Exception());
 
             var result = controller.Delete(Guid.NewGuid());
 

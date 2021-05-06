@@ -122,7 +122,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             daMock.Setup(x => x.Create(audio)).Verifiable();
             daMock.Setup(x => x.Save());
 
-            audioLogic.CreateAudio(audio);
+            audioLogic.Create(audio);
             daMock.VerifyAll();
             Assert.AreEqual(audio.Name, "Eres Mia");
 

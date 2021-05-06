@@ -7,7 +7,6 @@ namespace MSP.BetterCalm.BusinessLogic.Interface
     public interface IPsychologistLogic
     {
         IEnumerable<Psychologist> GetAll();
-        //  Psychologist GetByPathologyAndExpert(Guid pathologyId);
 
         Psychologist Get(Guid id);
 

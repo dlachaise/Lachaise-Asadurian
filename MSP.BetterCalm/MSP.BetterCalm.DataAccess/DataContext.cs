@@ -13,6 +13,7 @@ namespace MSP.BetterCalm.DataAccess
         public DbSet<Pathology> Pathology { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Consultation> Consultations { get; set; }
+        public DbSet<Session> Sessions { get; set; }
 
         public DataContext(DbContextOptions options) : base(options) { }
 

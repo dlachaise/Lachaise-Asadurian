@@ -8,6 +8,7 @@ using MSP.BetterCalm.BusinessLogic;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess;
 using MSP.BetterCalm.DataAccess.Interface;
+using MSP.BetterCalm.WebApi.Filters;
 
 namespace MSP.BetterCalm.WebApi
 {
@@ -39,9 +40,12 @@ namespace MSP.BetterCalm.WebApi
             services.AddScoped<IAdministratorLogic, AdministratorLogic>();
             services.AddScoped<IAudioLogic, AudioLogic>();
             services.AddScoped<IPlaylistLogic, PlaylistLogic>();
+            services.AddScoped<IPsychologistLogic, PsychologistLogic>();
             services.AddScoped<IPathologyLogic, PathologyLogic>();
             services.AddScoped<ICategoryLogic, CategoryLogic>();
             services.AddScoped<IConsultationLogic, ConsultationLogic>();
+            services.AddScoped<ISessionLogic, SessionLogic>();
+            services.AddScoped<AuthorizationFilter>();
 
             services.AddCors(
                options =>

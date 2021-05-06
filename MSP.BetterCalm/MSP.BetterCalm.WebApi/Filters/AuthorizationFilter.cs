@@ -9,65 +9,47 @@ using MSP.BetterCalm.WebApi.Models;
 
 namespace MSP.BetterCalm.WebApi.Filters
 {
-    public class AuthorizationFitler : Attribute, IAuthorizationFilter
+    public class AuthorizationFilter : Attribute, IAuthorizationFilter
     {
-        private readonly ISessionLogic sessions;
 
-        public AuthorizationFitler(ISessionLogic sessionsLogic)
-	{
-		this.sessions = sessionsLogic;
-	}
+
+        public AuthorizationFilter()
+        {
+
+        }
+
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             string token = context.HttpContext.Request.Headers["Authorization"];
-
-            if (String.IsNullOrEmpty(token))
+            if (token == null)
             {
                 context.Result = new ContentResult()
                 {
-                    StatusCode = 401,
-                    Content = "Debe ingresar un token en el Encabezado",
+                    StatusCode = 400,
+                    Content = "Token is required",
                 };
+                return;
             }
-            else
+            var sessions = GetSessions(context);
+            if (!sessions.IsValidToken(token))
             {
-                var session = this.GetSessionLogic(context);
-
-                if (!sessions.IsValidToken(token))
+                context.Result = new ContentResult()
                 {
-                    context.Result = new ContentResult(respnse)
-                    {
-                        StatusCode = 403,
-                        Content = "No tenes permisos"
-                    };
-                }
-            }
-
-            if (sessions.IsValidToken(token))
-            {
-                ResponseDTO response = new ResponseDTO
-                {
-                    Code = 3002,
-                    ErrorMessage = "El userToken ingresado no es correcto",
-                    IsSuccess = false
+                    StatusCode = 400,
+                    Content = "Invalid Token",
                 };
-                context.Result = new ObjectResult(response)
-                {
-                    StatusCode = 403,
-                };
+                return;
             }
         }
-        public ISessionLogic GetSessionLogic(AuthorizationFilterContext context)
+
+        public void OnActionExecuted(ActionExecutedContext context)
         {
-            var sessionType = typeof(ISessionLogic);
-
-            return context.HttpContext.RequestServices.GetService(sessionType) as ISessionLogic;
+            // do something after the action executes
         }
-        /*
-            ESTE METODO DEBERIA IR EN SU CAPA LOGICA!!!
-            Encapsulado la logica para autorizar usuarios en su sistema
-            ESTE ES UN EJEMPLO SIN LOGICA!!
-         */
-      
+
+        private static ISessionLogic GetSessions(AuthorizationFilterContext context)
+        {
+            return (ISessionLogic)context.HttpContext.RequestServices.GetService(typeof(ISessionLogic));
+        }
     }
 }

@@ -4,10 +4,12 @@ using MSP.BetterCalm.Domain;
 
 namespace MSP.BetterCalm.BusinessLogic.Interface
 {
-    public interface ICategoryLogic
+    public interface IConsultationLogic
     {
-        IEnumerable<Category> GetAll();
-        Category Get(Guid id);
+        IEnumerable<Consultation> GetAll();
+        Consultation Get(Guid id);
+
+        Consultation Create(Consultation consultation, Guid pathologyId);
 
     }
 }

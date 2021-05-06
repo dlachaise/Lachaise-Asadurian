@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
 using MSP.BetterCalm.Domain;
-//using System.Collections.IEnumerable;
 
 
 namespace MSP.BetterCalm.BusinessLogic
@@ -12,16 +12,15 @@ namespace MSP.BetterCalm.BusinessLogic
     {
 
         private IRepository<Audio> iaudR;
+        private IRepository<Playlist> iplayR;
+        private IRepository<Category> icatR;
+
 
         public AudioLogic(IRepository<Audio> AudioR)
         {
             this.iaudR = AudioR;
         }
-        public void CreateAudio(Audio audioToAdd)
-        {
-            iaudR.Create(audioToAdd);
-            iaudR.Save();
-        }
+
         public void Delete(Guid id)
         {
             Audio audio = iaudR.Get(id);
@@ -54,15 +53,34 @@ namespace MSP.BetterCalm.BusinessLogic
 
         public IEnumerable<Audio> GetAll()
         {
-            return this.iaudR.GetAll();
+            return this.iaudR.GetAll().Where(y => y.IsActive == true);
         }
 
-        //        public IEnumerable<Audio> GetByCategory(Guid categoryId){
-        //         return iaudR.GetByCategory(categoryId);
-        //     }
+        public Audio Create(Audio audio)
+        {
+            iaudR.Create(audio);
+            iaudR.Save();
+            return audio;
+        }
+//PROBAR ESTAS DOS
+        public IEnumerable<Audio> GetByPlaylist(Guid playlistId)
+        {
+            Playlist playlist = iplayR.Get(playlistId);
+            if (playlist != null)
+            {
+                return this.GetAll().Where(audio => audio.Playlists.Contains(playlist));
+            }
+            return null;
+        }
 
-        //    public IEnumerable<Audio> GetByPlaylist(Guid idPlaylist){
-        //        return iaudR.GetByPlaylist(idPlaylist);
+        public IEnumerable<Audio> GetByCategory(Guid categoryId)
+        {
+            Category category = icatR.Get(categoryId);
+            if (category != null)
+            {
+                return this.GetAll().Where(audio => audio.Categories.Contains(category));
+            }
+            return null;
+        }
     }
-
 }

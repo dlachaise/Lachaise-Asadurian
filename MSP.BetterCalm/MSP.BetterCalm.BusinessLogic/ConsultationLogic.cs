@@ -11,17 +11,11 @@ namespace MSP.BetterCalm.BusinessLogic
 
         private IPsychologistLogic psychLogic;
         private IRepository<Consultation> iConsultationR;
-        private ConsultationLogic consultationLogic;
-        private IConsultationLogic iConsultationlogic;
 
-        public ConsultationLogic(IRepository<Consultation> consultationR)
+        public ConsultationLogic(IRepository<Consultation> consultationR, IPsychologistLogic psychoLogic)
         {
             this.iConsultationR = consultationR;
-        }
-        public ConsultationLogic(IRepository<Consultation> consultationR, IPsychologistLogic iPsychoLogic)
-        {
-            this.iConsultationR = consultationR;
-            this.psychLogic = iPsychoLogic;
+            this.psychLogic = psychoLogic;
         }
 
         public String CreateMeetingLink()
@@ -32,7 +26,7 @@ namespace MSP.BetterCalm.BusinessLogic
 
         }
 
-        public void CreateConsultation(Consultation consult, Guid pathologyId)
+        public Consultation Create(Consultation consult, Guid pathologyId)
         {
             var listPsychologist = psychLogic.GetByPathology(pathologyId);
             if (listPsychologist == null)
@@ -66,6 +60,7 @@ namespace MSP.BetterCalm.BusinessLogic
             }
             iConsultationR.Create(consult);
             iConsultationR.Save();
+            return consult;
         }
 
         public Consultation Get(Guid id)

@@ -6,9 +6,9 @@ namespace MSP.BetterCalm.BusinessLogic.Interface
 {
     public interface ISessionLogic
     {
-        Session Create(Session session);
-        Session Get(Guid id);
-        Session GetByToken(string token);
-        bool IsValidToken(string token, Administrator admin);
+        bool IsValidToken(string token);
+
+        Guid? CreateToken(string email, string password);
+
     }
 }

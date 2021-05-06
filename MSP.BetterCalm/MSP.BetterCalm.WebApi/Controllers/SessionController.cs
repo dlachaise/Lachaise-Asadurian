@@ -10,7 +10,8 @@ using MSP.BetterCalm.WebApi.Models;
 
 namespace MSP.BetterCalm.WebApi.Controllers
 {
-
+    [ApiController]
+    [Route("api/[controller]")]
     public class SessionController : BetterCalm
     {
         private readonly ISessionLogic sessionLogic;
@@ -20,31 +21,17 @@ namespace MSP.BetterCalm.WebApi.Controllers
             this.sessionLogic = logic;
 
         }
+
         [HttpPost]
-        public IActionResult Post([FromBody] SessionDTO sessionDTO)
+        public IActionResult Login([FromBody] AdministratorLoginDTO admLogin)
         {
-
-            Session session = this.sessionLogic.Create(sessionDTO.toEntity());
-            SessionDTO sessionAdded = new SessionDTO(session);
-
-            return Ok(sessionAdded);
-
+            var token = sessionLogic.CreateToken(admLogin.Email, admLogin.Password);
+            if (token == null)
+            {
+                return BadRequest("Invalid Email or Password");
+            }
+            return Ok(token);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
-        {
-            Session session = this.sessionLogic.Get(id);
-
-            if (session != null)
-            {
-                return Ok(new SessionDTO(session));
-            }
-            else
-            {
-                return NotFound("Session not found with id: " + id);
-
-            }
-        }
     }
 }

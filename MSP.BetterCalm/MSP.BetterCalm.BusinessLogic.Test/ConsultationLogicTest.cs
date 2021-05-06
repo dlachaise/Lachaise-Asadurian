@@ -121,7 +121,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
 
 
         [TestMethod]
-        public void CreateConsultationOk()
+        public void CreateOk()
         {
             var pathology = new Pathology()
             {
@@ -148,7 +148,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             MockPsycho.Setup(x => x.GetPsychoAvailable(psychoToReturn, consult.Date)).Returns(psychoToReturnAvailable);
             MockPsycho.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(this.psycho);
 
-            consultationLogic.CreateConsultation(consult, pathology.Id);
+            consultationLogic.Create(consult, pathology.Id);
             daMock.VerifyAll();
             Assert.AreEqual(consult.Psychologist.Id, psycho.Id);
         }
@@ -184,7 +184,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             MockPsycho.Setup(x => x.GetPsychoAvailable(psychoToReturn, consult.Date)).Returns(psychoToReturnAvailable);
             MockPsycho.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(this.psycho);
 
-            consultationLogic.CreateConsultation(consult, pathology.Id);
+            consultationLogic.Create(consult, pathology.Id);
             daMock.VerifyAll();
             Assert.AreNotEqual(consult.Psychologist.Id, psycho.Id);
         }
@@ -219,7 +219,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             MockPsycho.Setup(x => x.GetPsychoAvailable(psychoToReturn, consult.Date)).Returns(psychoToReturnAvailable);
             MockPsycho.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(this.psycho);
 
-            consultationLogic.CreateConsultation(consult, pathology.Id);
+            consultationLogic.Create(consult, pathology.Id);
             daMock.VerifyAll();
             Assert.AreNotEqual(consult.Psychologist.Id, psycho.Id);
         }

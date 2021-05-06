@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
 using MSP.BetterCalm.Domain;
@@ -9,16 +10,18 @@ namespace MSP.BetterCalm.BusinessLogic
     public class PlaylistLogic : IPlaylistLogic
     {
         private IRepository<Playlist> iPlayR;
+        private IRepository<Category> iCatR;
 
         public PlaylistLogic(IRepository<Playlist> PlayR)
         {
             this.iPlayR = PlayR;
         }
 
-        public void Create(Playlist playlistToAdd)
+        public Playlist Create(Playlist playlistToAdd)
         {
             iPlayR.Create(playlistToAdd);
             iPlayR.Save();
+            return playlistToAdd;
         }
         public void Delete(Guid id)
         {
@@ -52,6 +55,16 @@ namespace MSP.BetterCalm.BusinessLogic
         public IEnumerable<Playlist> GetAll()
         {
             return this.iPlayR.GetAll();
+        }
+        //PROBAR
+        public IEnumerable<Playlist> GetByCategory(Guid categoryId)
+        {
+            Category category = iCatR.Get(categoryId);
+            if (category != null)
+            {
+                return this.GetAll().Where(play => play.Categories.Contains(category));
+            }
+            return null;
         }
     }
 }

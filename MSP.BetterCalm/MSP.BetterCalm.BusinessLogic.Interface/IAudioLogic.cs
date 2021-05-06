@@ -8,12 +8,12 @@ namespace MSP.BetterCalm.BusinessLogic.Interface
     {
         IEnumerable<Audio> GetAll();
 
-        // IEnumerable<Audio> GetByCategory(Guid idCategory);
-        // IEnumerable<Audio> GetByPlaylist(Guid idPlaylist);
+        IEnumerable<Audio> GetByCategory(Guid categoryId);
+        IEnumerable<Audio> GetByPlaylist(Guid playlistId);
 
         Audio Get(Guid id);
         void Delete(Guid id);
-        // void Create(Audio audio);
+        Audio Create(Audio audio);
 
     }
 }
