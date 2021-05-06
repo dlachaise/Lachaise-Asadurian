@@ -16,9 +16,12 @@ namespace MSP.BetterCalm.BusinessLogic
         private IRepository<Category> icatR;
 
 
-        public AudioLogic(IRepository<Audio> AudioR)
+        public AudioLogic(IRepository<Audio> AudioR, IRepository<Playlist> iplayR, IRepository<Category> icatR)
         {
             this.iaudR = AudioR;
+            this.iplayR = iplayR;
+            this.icatR = icatR;
+
         }
 
         public void Delete(Guid id)
@@ -63,11 +66,6 @@ namespace MSP.BetterCalm.BusinessLogic
             iaudR.Save();
             return audio;
         }
-<<<<<<< HEAD
-        //PROBAR ESTAS DOS
-=======
-
->>>>>>> 1923155ef33a31c3bae547db0e701e901a7648f8
         public IEnumerable<Audio> GetByPlaylist(Guid playlistId)
         {
             Playlist playlist = iplayR.Get(playlistId);
