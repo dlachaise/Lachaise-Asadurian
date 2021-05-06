@@ -86,6 +86,7 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             daMock.Setup(m => m.Save());
 
             playlistLogic.Delete(id);
+
             daMock.VerifyAll();
         }
 
