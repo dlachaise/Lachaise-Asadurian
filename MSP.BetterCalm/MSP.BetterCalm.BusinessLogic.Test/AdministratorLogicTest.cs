@@ -79,7 +79,6 @@ namespace MSP.BetterCalm.BusinessLogic.Test
 
         }
         [ExpectedException(typeof(Exception), "The administrator doesn't exists")]
-        //[ExpectedException(typeof(BusinessLogicExceptions)]
         [TestMethod]
         public void GetAdministratorByIdFail()
         {

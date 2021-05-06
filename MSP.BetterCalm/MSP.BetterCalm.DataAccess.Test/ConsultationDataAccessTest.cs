@@ -32,7 +32,6 @@ namespace MSP.BetterCalm.DataAccess.Test
             {
                 Id = Guid.NewGuid(),
                 Name = "Joaquin Perez",
-                // MeetingType = "presencial",
                 MeetingType = 1,
                 Address = "Julio cesar 1569",
                 IsActive = true,
@@ -44,9 +43,7 @@ namespace MSP.BetterCalm.DataAccess.Test
             Guid id = new Guid();
             consult = new Consultation()
             {
-                Id = id,
-                //MeetingType = 1,
-                // MeetingLink = "www.esporahi.com",
+                Id = id,         
                 Date = DateTime.Now,
                 UserCompleteName = "Juan manuel",
                 UserBirthDate = "11/11/1994",
@@ -96,8 +93,6 @@ namespace MSP.BetterCalm.DataAccess.Test
             var consult2 = new Consultation()
             {
                 Id = id,
-                // MeetingType = 2,
-                //MeetingLink = "www.googleMeet.com",
                 Date = DateTime.Now,
                 UserCompleteName = "Mario Lopez",
                 UserBirthDate = "11/11/1980",
@@ -112,37 +107,6 @@ namespace MSP.BetterCalm.DataAccess.Test
             int size = consultationRepo.GetAll().ToList().Count;
             Assert.AreEqual(2, size);
         }
-
-        /*  [TestMethod]
-          public void DeleteConsultation()
-          {
-              CreateDataBase("DeleteConsultationTestDB");
-              consultationRepo.Delete(consult);
-              consultationRepo.Save();
-              int size = consultationRepo.GetAll().ToList().Count;
-              Assert.AreEqual(0, size);
-          }
-
-          [TestMethod]
-          public void UpdateConsultation()
-          { 
-              CreateDataBase("UpdateConsultationTestDB");
-              var getAdmin = adminRepo.Get(admin.Id);
-              Assert.AreEqual(getAdmin.Name,admin.Name);
-
-              getAdmin.Email = "masadurian@gmail.com";
-              adminRepo.Update(getAdmin);
-              adminRepo.Save();
-
-              var getAdminVerifi = adminRepo.Get(getAdmin.Id);
-              Assert.AreEqual(getAdminVerifi.Id,getAdmin.Id);
-              Assert.AreEqual(getAdmin.Email,"masadurian@gmail.com");
-
-              int size = adminRepo.GetAll().ToList().Count;
-              adminRepo.Save();
-              Assert.AreEqual(1, size);
-
-          }*/
     }
 
 }

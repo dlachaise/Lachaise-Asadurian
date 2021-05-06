@@ -33,7 +33,6 @@ namespace MSP.BetterCalm.DataAccess.Test
             {
                 Id = id,
                 Name = "Joaquin Perez",
-                // MeetingType = "presencial",
                 MeetingType = 2,
                 Address = "Julio cesar 1569",
                 IsActive = true,
@@ -96,7 +95,6 @@ namespace MSP.BetterCalm.DataAccess.Test
             {
                 Id = id2,
                 Name = "Maria Ines",
-                //MeetingType = "Online",
                 MeetingType = 1,
                 Address = "Av River 5544",
                 IsActive = true,

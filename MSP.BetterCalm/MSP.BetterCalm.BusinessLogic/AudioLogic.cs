@@ -56,14 +56,14 @@ namespace MSP.BetterCalm.BusinessLogic
             return this.iaudR.GetAll().Where(y => y.IsActive == true);
         }
 
-<<<<<<< HEAD
+
         public Audio Create(Audio audio)
         {
             iaudR.Create(audio);
             iaudR.Save();
             return audio;
         }
-//PROBAR ESTAS DOS
+
         public IEnumerable<Audio> GetByPlaylist(Guid playlistId)
         {
             Playlist playlist = iplayR.Get(playlistId);
@@ -83,7 +83,5 @@ namespace MSP.BetterCalm.BusinessLogic
             }
             return null;
         }
-=======
->>>>>>> 6ac6082973ab956cf6c0d80d21a11470883cf905
     }
 }

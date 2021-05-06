@@ -9,9 +9,7 @@ namespace MSP.BetterCalm.BusinessLogic.Interface
         IEnumerable<Playlist> GetAll();
 
         IEnumerable<Playlist> GetByCategory(Guid idCategory);
-        /*  IEnumerable<Playlist> GetByPlaylist(Guid idPlaylist);*/
-
-
+     
         Playlist Get(Guid id);
         void Delete(Guid id);
         Playlist Create(Playlist playlist);
