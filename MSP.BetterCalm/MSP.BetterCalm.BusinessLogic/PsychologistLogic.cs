@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using MSP.BetterCalm.Domain;
+using System.Linq;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.DataAccess.Interface;
-using System.Linq;
-using MSP.BetterCalm.DataAccess;
+using MSP.BetterCalm.Domain;
 
 namespace MSP.BetterCalm.BusinessLogic
 {
@@ -20,9 +19,23 @@ namespace MSP.BetterCalm.BusinessLogic
 
         public Psychologist Create(Psychologist psyc)
         {
-            psycDA.Create(psyc);
-            psycDA.Save();
-            return psyc;
+
+            if (!ExistPsychologist(psyc))
+            {
+                psycDA.Create(psyc);
+                psycDA.Save();
+                return psyc;
+            }
+            else
+            {
+                throw new Exception("The psychologist already exists");
+            }
+           
+        }
+
+        private bool ExistPsychologist(Psychologist psychologist)
+        {
+            return psycDA.GetAll().Any(x => x.Address == psychologist.Address);
         }
 
         public void Delete(Guid id)
@@ -84,9 +97,8 @@ namespace MSP.BetterCalm.BusinessLogic
 
         }
 
-        public List<Psychologist>/*IEnumerable<Psychologist>*/ GetPsychoAvailable(IEnumerable<Psychologist> sublistPsyco, DateTime meetingDate)
+        public List<Psychologist> GetPsychoAvailable(IEnumerable<Psychologist> sublistPsyco, DateTime meetingDate)
         {
-
             List<Psychologist> psychosAvailable = new List<Psychologist>();
             foreach (var pyscho in sublistPsyco)
             {
@@ -99,35 +111,50 @@ namespace MSP.BetterCalm.BusinessLogic
                     {
                         if (meeting.Value <= 5)
                         {
+                            pyscho.MeetingList.Add(meetingDate, (+1));
                             psychosAvailable.Add(pyscho);
                         }
                     }
                     else if (res < 0)
                     {
-                        aux.Add(meetingDate, +1);
+                        
+                        pyscho.MeetingList.Add(meetingDate, (+1));
+                        psychosAvailable.Add(pyscho);
                         break;
                     }
                 }
             }
             return psychosAvailable;
-
         }
 
         public Psychologist OlderPsycho(List<Psychologist> sublistPsyco)
         {
-            DateTime dateFstPsycho = sublistPsyco.First().StartDate;
-            Psychologist ret = new Psychologist();
-
-            foreach (var psycho in sublistPsyco)
+            if (sublistPsyco.Count == 0)
             {
-                int result = DateTime.Compare(psycho.StartDate, dateFstPsycho);
-                if (result < 0)
-                {
-                    dateFstPsycho = psycho.StartDate;
-                    ret = psycho;
-                }
+                throw new Exception("No Psychologist");
             }
-            return ret;
+            else
+            {
+                DateTime dateFstPsycho = sublistPsyco.First().StartDate;
+                Psychologist ret = new Psychologist();
+
+                foreach (var psycho in sublistPsyco)
+                {
+                    int result = DateTime.Compare(psycho.StartDate, dateFstPsycho);
+                    if (result < 0)
+                    {
+                        dateFstPsycho = psycho.StartDate;
+                        ret = psycho;
+                    }
+                    else if(result == 0)
+                    {
+                        dateFstPsycho = psycho.StartDate;
+                        ret = psycho;
+                    }
+                }
+                return ret;
+
+            }
         }
     }
 }

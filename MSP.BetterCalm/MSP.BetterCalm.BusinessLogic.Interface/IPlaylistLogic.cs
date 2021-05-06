@@ -1,6 +1,6 @@
 using System;
-using MSP.BetterCalm.Domain;
 using System.Collections.Generic;
+using MSP.BetterCalm.Domain;
 
 namespace MSP.BetterCalm.BusinessLogic.Interface
 {

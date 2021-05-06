@@ -1,11 +1,9 @@
-﻿using MSP.BetterCalm.DataAccess;
-using MSP.BetterCalm.Domain;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MSP.BetterCalm.Domain;
 
 namespace MSP.BetterCalm.DataAccess.Test
 {
@@ -46,11 +44,19 @@ namespace MSP.BetterCalm.DataAccess.Test
         }
 
         [TestMethod]
-        public void GetPlaylist()
+        public void GetAllPlaylist()
         {
             CreateDataBase("GetPlaylistTestDB");
             int size = playlistRepo.GetAll().ToList().Count;
             Assert.AreEqual(1, size);
+        }
+
+        [TestMethod]
+        public void GetPlaylistById()
+        {
+            CreateDataBase("GetPlaylistDB");
+            var getPlaylist = playlistRepo.Get(playlist.Id);
+            Assert.AreEqual(getPlaylist.Id, playlist.Id);
         }
 
 
@@ -73,16 +79,6 @@ namespace MSP.BetterCalm.DataAccess.Test
             int size = playlistRepo.GetAll().ToList().Count;
             Assert.AreEqual(2, size);
         }
-
-        /*   [TestMethod]
-          public void DeletePlaylistRepo()
-          {
-              CreateDataBase("DeletePlaylistTestDB");
-              playlistRepo.Remove(playlist);
-              playlistRepo.Save();
-              int size = playlistRepo.GetAll().ToList().Count;
-              Assert.AreEqual(0, size);
-          }*/
 
     }
 

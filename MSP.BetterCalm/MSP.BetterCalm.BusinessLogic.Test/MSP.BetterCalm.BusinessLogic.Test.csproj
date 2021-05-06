@@ -6,10 +6,9 @@
 
    <ItemGroup>
      <ProjectReference Include="..\MSP.BetterCalm.Domain\MSP.BetterCalm.Domain.csproj" />
-      <ProjectReference Include="..\MSP.BetterCalm.BusinessLogic.Interface\MSP.BetterCalm.BusinessLogic.csproj" />
      <ProjectReference Include="..\MSP.BetterCalm.DataAccess.Interface\MSP.BetterCalm.DataAccess.Interface.csproj" />
      <ProjectReference Include="..\MSP.BetterCalm.BusinessLogic\MSP.BetterCalm.BusinessLogic.csproj" />
-     <ProjectReference Include="..\MSP.BetterCalm.BusinessLogic.Interface\MSP.BetterCalm.BusinessLogic.Interface.csproj" />
+	   <ProjectReference Include="..\MSP.BetterCalm.BusinessLogic.Interface\MSP.BetterCalm.BusinessLogic.Interface.csproj" />
    </ItemGroup>
 
    <ItemGroup>

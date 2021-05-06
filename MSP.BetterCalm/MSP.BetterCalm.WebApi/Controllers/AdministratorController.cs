@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using MSP.BetterCalm.BusinessLogic.Interface;
 using MSP.BetterCalm.Domain;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using MSP.BetterCalm.WebApi.Models;
 
 namespace MSP.BetterCalm.WebApi.Controllers

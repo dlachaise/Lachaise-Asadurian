@@ -1,11 +1,8 @@
-﻿using MSP.BetterCalm.DataAccess;
-using MSP.BetterCalm.Domain;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using System;
 using System.Linq;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MSP.BetterCalm.Domain;
 
 namespace MSP.BetterCalm.DataAccess.Test
 {
@@ -48,11 +45,19 @@ namespace MSP.BetterCalm.DataAccess.Test
         }
 
         [TestMethod]
-        public void GetAudio()
+        public void GetAllAudio()
         {
             CreateDataBase("GetAudioTestDB");
             int size = audioRepo.GetAll().ToList().Count;
             Assert.AreEqual(1, size);
+        }
+
+        [TestMethod]
+        public void GetAudioById()
+        {
+            CreateDataBase("GetAdudioDB");
+            var getAudio = audioRepo.Get(audio.Id);
+            Assert.AreEqual(getAudio.Id, audio.Id);
         }
 
 
