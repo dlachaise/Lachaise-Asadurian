@@ -49,11 +49,13 @@ namespace MSP.BetterCalm.BusinessLogic
                     {
                         consult.MeetingType = psychoForConsultation.MeetingType;
                         consult.MeetingAdress = psychoForConsultation.Address;
+                        consult.Cost = psychLogic.ConsultationCost(psychoForConsultation,consult); // le agrego el costo
                     }
                     else
                     {
                         consult.MeetingType = psychoForConsultation.MeetingType;
                         consult.MeetingAdress = CreateMeetingLink();
+                        consult.Cost = psychLogic.ConsultationCost(psychoForConsultation,consult); // le agrego el costo
                     }
                 }
 

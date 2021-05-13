@@ -17,11 +17,11 @@ namespace MSP.BetterCalm.Domain
 
         public Psychologist Psychologist { get; set; }
         
-        public int Cost{get;set;}
+        public double Cost{get;set;}
 
         public int Duration{get;set;}
 
-        public int Discount{get;set;}
+        public double Discount{get;set;}
 
        // public int ConsulAmount{get;set;}
 

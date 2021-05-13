@@ -16,6 +16,8 @@ namespace MSP.BetterCalm.BusinessLogic.Interface
         List<Psychologist> GetPsychoAvailable(IEnumerable<Psychologist> sublistPsyco, DateTime meetingDate);
         Psychologist OlderPsycho(List<Psychologist> sublistPsyco);
         public IEnumerable<Psychologist> GetByPathology(Guid pathology);
+        
+        double ConsultationCost(Psychologist psychologist, Consultation consultation);
 
 
     }
