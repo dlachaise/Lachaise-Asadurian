@@ -14,7 +14,9 @@ namespace MSP.BetterCalm.BusinessLogic.Test
     {
         private Mock<IAudioLogic> Mock;
         private Mock<IRepository<Audio>> daMock;
+        private Mock<IRepository<Playlist>> daMockPla;
 
+        private Mock<IRepository<Category>> daMockCat;
         AudioLogic audioLogic;
 
         [TestInitialize]
@@ -22,7 +24,10 @@ namespace MSP.BetterCalm.BusinessLogic.Test
         {
             daMock = new Mock<IRepository<Audio>>(MockBehavior.Strict);
             Mock = new Mock<IAudioLogic>(MockBehavior.Strict);
-            this.audioLogic = new AudioLogic(daMock.Object);
+            daMockPla = new Mock<IRepository<Playlist>>(MockBehavior.Strict);
+            daMockCat = new Mock<IRepository<Category>>(MockBehavior.Strict);
+
+            this.audioLogic = new AudioLogic(daMock.Object, daMockPla.Object, daMockCat.Object);
         }
 
         [TestMethod]

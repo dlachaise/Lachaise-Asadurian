@@ -10,7 +10,6 @@ using MSP.BetterCalm.WebApi.Filters;
 namespace MSP.BetterCalm.WebApi.Controllers
 {
     [Route("api/[controller]")]
-    [AuthorizationFilter]
     public class AdministratorController : BetterCalm
     {
         private readonly IAdministratorLogic administratorLogic;
@@ -22,7 +21,7 @@ namespace MSP.BetterCalm.WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromHeader] Guid token)
+        public IActionResult Get()
         {
 
             IEnumerable<AdministratorDTO> Administrators = this.administratorLogic.GetAll().Select(adm => new AdministratorDTO(adm));
@@ -32,7 +31,7 @@ namespace MSP.BetterCalm.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get([FromHeader] Guid token, Guid id)
+        public IActionResult Get(Guid id)
         {
             Administrator admin = this.administratorLogic.Get(id);
 
@@ -48,7 +47,7 @@ namespace MSP.BetterCalm.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromHeader] Guid token, [FromBody] AdministratorDTO adminDTO)
+        public IActionResult Post([FromBody] AdministratorDTO adminDTO)
         {
 
             Administrator admin = this.administratorLogic.Create(adminDTO.toEntity());
@@ -59,7 +58,7 @@ namespace MSP.BetterCalm.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put([FromHeader] Guid token, Guid id, [FromBody] AdministratorDTO adminDTO)
+        public IActionResult Put(Guid id, [FromBody] AdministratorDTO adminDTO)
         {
             try
             {
@@ -74,7 +73,7 @@ namespace MSP.BetterCalm.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete([FromHeader] Guid token, Guid id)
+        public IActionResult Delete(Guid id)
         {
             try
             {

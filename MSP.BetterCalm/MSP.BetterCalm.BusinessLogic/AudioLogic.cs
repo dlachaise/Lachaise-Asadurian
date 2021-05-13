@@ -16,9 +16,12 @@ namespace MSP.BetterCalm.BusinessLogic
         private IRepository<Category> icatR;
 
 
-        public AudioLogic(IRepository<Audio> AudioR)
+        public AudioLogic(IRepository<Audio> AudioR, IRepository<Playlist> iplayR, IRepository<Category> icatR)
         {
             this.iaudR = AudioR;
+            this.iplayR = iplayR;
+            this.icatR = icatR;
+
         }
 
         public void Delete(Guid id)
@@ -63,7 +66,6 @@ namespace MSP.BetterCalm.BusinessLogic
             iaudR.Save();
             return audio;
         }
-
         public IEnumerable<Audio> GetByPlaylist(Guid playlistId)
         {
             Playlist playlist = iplayR.Get(playlistId);
