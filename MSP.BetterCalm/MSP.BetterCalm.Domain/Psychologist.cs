@@ -18,8 +18,10 @@ namespace MSP.BetterCalm.Domain
 
         public DateTime StartDate { get; set; }
 
+        public int Tariff{get;set;} //500 -750 - 1000 -2000
+       
 
-
+      
         public Psychologist Update(Psychologist entity)
         {
             if (entity.Name != null)

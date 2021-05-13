@@ -9,12 +9,16 @@ namespace MSP.BetterCalm.BusinessLogic
 {
     public class PsychologistLogic : IPsychologistLogic
     {
+
+        private IAdministratorLogic adminLogic; // probando
+
         private IRepository<Psychologist> psycDA;
 
 
-        public PsychologistLogic(IRepository<Psychologist> repository)
+        public PsychologistLogic(IRepository<Psychologist> repository, IAdministratorLogic administratorLogic)
         {
             this.psycDA = repository;
+            this.adminLogic = administratorLogic; // probando
         }
 
         public Psychologist Create(Psychologist psyc)
@@ -155,6 +159,25 @@ namespace MSP.BetterCalm.BusinessLogic
                 return ret;
 
             }
+        }
+
+        public double ConsultationCost(Psychologist psychologist, Consultation consultation){
+
+            double res = 0;
+            double costWithDiscount = 0;
+            double discount = adminLogic.HaveDiscount(consultation);
+
+            if(discount !=0){
+                costWithDiscount = psychologist.Tariff * consultation.Duration * discount;
+                res = costWithDiscount;
+                
+            }else{
+                double costWithoutDiscount = psychologist.Tariff * consultation.Duration;
+                res = costWithoutDiscount;
+            }
+
+           return res;
+
         }
     }
 }

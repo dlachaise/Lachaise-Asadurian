@@ -13,7 +13,7 @@ namespace MSP.BetterCalm.BusinessLogic.Interface
         void Update(Guid id, Administrator admin);
         void Delete(Guid id);
         Administrator Create(Administrator admin);
-
+        double HaveDiscount(Consultation consult); // probando
 
     }
 }

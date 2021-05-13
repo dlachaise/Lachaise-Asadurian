@@ -16,6 +16,29 @@ namespace MSP.BetterCalm.Domain
         public string UserEmail { get; set; }
 
         public Psychologist Psychologist { get; set; }
+        
+        public int Cost{get;set;}
+
+        public int Duration{get;set;}
+
+        public int Discount{get;set;}
+
+       // public int ConsulAmount{get;set;}
+
+
+
+        public override bool Equals(Object obj)
+        {
+            var result = false;
+            if (obj is Consultation consultation)
+            {
+                result = this.Id == consultation.Id && this.UserEmail.Equals(consultation.UserEmail);
+            }
+
+            return result;
+        }
+
 
     }
+  
 }

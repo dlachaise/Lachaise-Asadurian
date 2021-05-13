@@ -9,11 +9,14 @@ namespace MSP.BetterCalm.BusinessLogic
 {
     public class AdministratorLogic : IAdministratorLogic
     {
+
+         private IRepository<Consultation> consDA; // probandooo
         private IRepository<Administrator> admDA;
 
-        public AdministratorLogic(IRepository<Administrator> AdmDA)
+        public AdministratorLogic(IRepository<Administrator> AdmDA , IRepository<Consultation> ConsDA)
         {
             this.admDA = AdmDA;
+            this.consDA = ConsDA; 
         }
 
         public Administrator Create(Administrator admin)
@@ -164,5 +167,24 @@ namespace MSP.BetterCalm.BusinessLogic
         {
             return this.admDA.GetAll().Where(y => y.IsActive == true);
         }
+
+        public double HaveDiscount(Consultation consultation){
+            double res = 0;
+            var consultations = this.consDA.GetAll().Where(x => x.UserEmail.Equals(consultation.UserEmail));
+            
+            int consulAmount = consultations.Count();
+   
+            if(consulAmount >= 5){
+                res = 0.15;  // le doy un 15% 
+            }else if(consulAmount > 10){
+                res = 0.25; // le doy un 25% 
+            }else if(consulAmount > 25){
+                res = 0.50; // le doy un 25% 
+            } 
+
+            return res;
+        }
+
+
     }
 }
