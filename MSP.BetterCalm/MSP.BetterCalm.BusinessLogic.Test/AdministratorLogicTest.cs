@@ -16,14 +16,19 @@ namespace MSP.BetterCalm.BusinessLogic.Test
         private Mock<IAdministratorLogic> Mock;
         private Mock<IRepository<Administrator>> daMock;
 
+        //probando Obl 2
+        private Mock<IRepository<Consultation>> MockCons;
+
         AdministratorLogic administratorLogic;
 
         [TestInitialize]
         public void Setup()
         {
+             MockCons = new Mock<IRepository<Consultation>>(MockBehavior.Strict); //probando obl 2
             daMock = new Mock<IRepository<Administrator>>(MockBehavior.Strict);
             Mock = new Mock<IAdministratorLogic>(MockBehavior.Strict);
-            this.administratorLogic = new AdministratorLogic(daMock.Object);
+           // this.administratorLogic = new AdministratorLogic(daMock.Object);
+            this.administratorLogic = new AdministratorLogic(daMock.Object,MockCons.Object);  //probando obl 
         }
 
         [TestMethod]
@@ -361,7 +366,6 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             var ret = administratorLogic.Get(id);
             Assert.IsFalse(ret.Equals(adminNull));
         }
-
 
     }
 

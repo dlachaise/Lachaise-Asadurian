@@ -24,15 +24,20 @@ namespace MSP.BetterCalm.BusinessLogic
         public Psychologist Create(Psychologist psyc)
         {
 
-            if (!ExistPsychologist(psyc))
-            {
-                psycDA.Create(psyc);
-                psycDA.Save();
-                return psyc;
-            }
-            else
-            {
-                throw new Exception("The psychologist already exists");
+            if(psyc.Tariff != 500 || psyc.Tariff != 750 || psyc.Tariff != 1000 || psyc.Tariff != 2000){
+                throw new Exception("The tariff is not acepted");
+            }else{
+                
+                if (!ExistPsychologist(psyc))
+                {
+                    psycDA.Create(psyc);
+                    psycDA.Save();
+                    return psyc;
+                }
+                else
+                {
+                    throw new Exception("The psychologist already exists");
+                }
             }
            
         }

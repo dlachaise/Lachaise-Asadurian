@@ -19,7 +19,7 @@ namespace MSP.BetterCalm.Domain
         
         public double Cost{get;set;}
 
-        public int Duration{get;set;}
+        public double Duration{get;set;}
 
         public double Discount{get;set;}
 

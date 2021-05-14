@@ -12,6 +12,9 @@ namespace MSP.BetterCalm.BusinessLogic.Test
     [TestClass]
     public class PsychologistLoginTest
     {
+
+         //probando Obl 2
+        private Mock<IAdministratorLogic> MockAdm;
         private Mock<IPsychologistLogic> Mock;
         private Mock<IRepository<Psychologist>> daMock;
 
@@ -24,9 +27,11 @@ namespace MSP.BetterCalm.BusinessLogic.Test
         {
             SortedList<DateTime, int> meet = new SortedList<DateTime, int>();
             meet.Add(DateTime.Now.AddDays(-2), 2);
+            MockAdm = new Mock<IAdministratorLogic>(MockBehavior.Strict); //probando obl 2
             daMock = new Mock<IRepository<Psychologist>>(MockBehavior.Strict);
             Mock = new Mock<IPsychologistLogic>(MockBehavior.Strict);
-            this.psychologistLogic = new PsychologistLogic(daMock.Object);
+            //this.psychologistLogic = new PsychologistLogic(daMock.Object);
+             this.psychologistLogic = new PsychologistLogic(daMock.Object, MockAdm.Object);//probando obl 2
             patList1 = new List<Pathology>{
                 new Pathology{
                     Id = Guid.NewGuid(),
@@ -55,7 +60,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 Address = "Julio Cesar 1569",
                 IsActive = true,
                 Pathologies = patList1,
-                MeetingList = meet
+                MeetingList = meet,
+                Tariff = 750
             };
             psyco2 = new Psychologist()
             {
@@ -64,7 +70,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 MeetingType = 2,
                 Address = "",
                 IsActive = true,
-                Pathologies = patList2
+                Pathologies = patList2,
+                Tariff = 1000
             };
             psyco3 = new Psychologist()
             {
@@ -73,7 +80,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 MeetingType = 2,
                 Address = "",
                 IsActive = false,
-                Pathologies = patList2
+                Pathologies = patList2,
+                Tariff = 500
             };
         }
 
@@ -316,7 +324,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 MeetingType = 2,
                 Address = "Luis Alberto de Herrerra 6555",
                 IsActive = true,
-                Pathologies = patList1
+                Pathologies = patList1,
+                Tariff = 750
             };
             daMock.Setup(x => x.Create(psycoToCreate)).Verifiable();
             daMock.Setup(x => x.Save());
@@ -333,6 +342,33 @@ namespace MSP.BetterCalm.BusinessLogic.Test
 
         }
 
+       /*  [ExpectedException(typeof(Exception), "The tariff is not acepted")]
+        [TestMethod]
+        public void CreatePsychologistTariffError()
+        {
+            var psycoToCreate = new Psychologist()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Marco Gomez",
+                MeetingType = 2,
+                Address = "Luis Alberto de Herrerra 6555",
+                IsActive = true,
+                Pathologies = patList1,
+                Tariff = 850
+            };
+            daMock.Setup(x => x.Create(psycoToCreate)).Verifiable();
+            daMock.Setup(x => x.Save());
+            List<Psychologist> list = new List<Psychologist>();
+            daMock.Setup(x => x.GetAll()).Returns(list);
+            psychologistLogic.Create(psycoToCreate);
+
+            daMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(psycoToCreate);
+            var ret = psychologistLogic.Get(psycoToCreate.Id);
+           
+            daMock.VerifyAll();
+            Assert.IsFalse(ret.Equals(psycoToCreate));
+        }
+*/
         [TestMethod]
         public void RemovePsychologistOk()
         {

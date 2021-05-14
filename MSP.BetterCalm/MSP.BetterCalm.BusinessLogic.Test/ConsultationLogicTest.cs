@@ -48,7 +48,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 IsActive = true,
                 Pathologies = patList1,
                 StartDate = DateTime.Now.AddDays(-3),
-                MeetingList = new SortedList<DateTime, int>()
+                MeetingList = new SortedList<DateTime, int>(),
+                Tariff = 750 
             };
         }
 
@@ -68,7 +69,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 UserBirthDate = "11/11/1994",
                 UserCel = "099894147",
                 UserEmail = "diego@gmail.com",
-                Psychologist = psycho
+               // Psychologist = psycho,
+                Duration = 1
 
             };
             List<Consultation> list = new List<Consultation>();
@@ -95,7 +97,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 UserBirthDate = "01/05/1994",
                 UserCel = "099047785",
                 UserEmail = "martin@gmail.com",
-                Psychologist = psycho
+               // Psychologist = psycho,
+                Duration = 1
 
             };
 
@@ -137,7 +140,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 UserBirthDate = "11/11/1994",
                 UserCel = "099894147",
                 UserEmail = "diego@gmail.com",
-                Psychologist = psycho
+                //Psychologist = psycho,
+                Duration = 1.5
             };
             var psychoToReturn = new List<Psychologist> { this.psycho };
             var psychoToReturnAvailable = new List<Psychologist> { this.psycho };
@@ -147,6 +151,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
             MockPsycho.Setup(x => x.GetByPathology(pathology.Id)).Returns(psychoToReturn);
             MockPsycho.Setup(x => x.GetPsychoAvailable(psychoToReturn, consult.Date)).Returns(psychoToReturnAvailable);
             MockPsycho.Setup(x => x.OlderPsycho(psychoToReturnAvailable)).Returns(this.psycho);
+
+            MockPsycho.Setup(x => x.ConsultationCost(this.psycho,consult)).Returns(this.psycho.Tariff * consult.Duration); // Probando obl 2
 
             consultationLogic.Create(consult, pathology.Id);
             daMock.VerifyAll();
@@ -172,7 +178,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 UserBirthDate = "01/10/1994",
                 UserCel = "0996225836",
                 UserEmail = "maria@gmail.com",
-                Psychologist = psycho
+               // Psychologist = psycho,
+                Duration = 1
             };
 
             var psychoToReturn = new List<Psychologist> { this.psycho };
@@ -208,7 +215,8 @@ namespace MSP.BetterCalm.BusinessLogic.Test
                 UserBirthDate = "01/10/1994",
                 UserCel = "09965848",
                 UserEmail = "mariana@gmail.com",
-                Psychologist = psycho
+               // Psychologist = psycho,
+                Duration = 1
             };
             List<Psychologist> psychoToReturn = null;
             var psychoToReturnAvailable = new List<Psychologist> { this.psycho };
